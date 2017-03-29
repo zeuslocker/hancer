@@ -3,7 +3,7 @@ class DriversController < ApplicationController
 
   def index
     run Driver::Index
-    render_form :index
+    render_form :index, result: result
   end
 
   def create
@@ -17,5 +17,12 @@ class DriversController < ApplicationController
   def new
     run Driver::New
     render_form :new
+  end
+
+  def destroy
+    run Driver::Destroy do |result|
+      flash[:notice] = 'Success Destroy!'
+      redirect_to :controller => "drivers", :action => "index" and return
+    end
   end
 end

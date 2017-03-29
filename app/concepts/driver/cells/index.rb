@@ -2,7 +2,7 @@ class Driver
   class Cell
     class Index < Trailblazer::Cell
       def show_drivers
-        concept('driver/cell/show', collection: model)
+        concept('driver/cell/show', collection: model['drivers'])
       end
 
       def flash_messages
@@ -12,6 +12,10 @@ class Driver
             acc << content_tag(:div, "#{flash[elem.to_sym]}", class: "#{elem}")
           end
         end
+      end
+
+      def new_driver_form
+        concept('driver/cell/new', model['model'])
       end
     end
   end
