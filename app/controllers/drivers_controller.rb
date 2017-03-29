@@ -10,6 +10,8 @@ class DriversController < ApplicationController
     run Driver::Create do |result|
       redirect_to action: :index and return
     end
+    flash[:alert] = AlertsViewHandler.call(result)
+    redirect_to :controller => "drivers", :action => "index"
   end
 
   def new
