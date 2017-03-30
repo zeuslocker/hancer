@@ -7,10 +7,9 @@ class Driver
 
       def flash_messages
         flash = parent_controller.flash
-        if !flash.empty?
-          flash.keys.inject("") do |acc, elem|
-            acc << content_tag(:div, "#{flash[elem.to_sym]}", class: "#{elem}")
-          end
+        return if flash.empty?
+        flash.keys.inject('') do |acc, elem|
+          acc << content_tag(:div, flash[elem.to_sym].to_s, class: elem.to_s)
         end
       end
 

@@ -17,7 +17,7 @@ class AlertsViewHandler
 
   def setup_alerts!
     result['contract.default'].errors.full_messages.inject('') do |acc, elem|
-      acc << elem+' '
+      acc << elem + ' '
     end.chop
   end
 end

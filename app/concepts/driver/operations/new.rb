@@ -1,4 +1,3 @@
-#require_relative '../contracts/driver_form.rb'
 class Driver
   class New < Trailblazer::Operation
     extend Trailblazer::Operation::Contract::DSL

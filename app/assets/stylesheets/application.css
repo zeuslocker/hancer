@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+body{
+  background: #D0EFFF;
+}
+.navbar-default {
+    border-color: #E7E7E7;
+    height: 60px;
+    /* Rectangle: */
+    background: #003FFF;
+}
+.navbar-nav li a {
+ line-height: 30px;
+ color: #FFFFFF;
+}

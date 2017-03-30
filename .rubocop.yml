@@ -1,0 +1,34 @@
+AllCops:
+  #RunRailsCops: true
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'Rakefile'
+    - 'Guardfile'
+    - 'config.ru'
+    - 'app/services/json_api/custom_has_many_reflection.rb'
+Rails:
+  Enabled: true
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 125
+Lint/UnneededDisable:
+  Enabled: false
+ClassLength:
+  Max: 250
+FrozenStringLiteralComment:
+  Enabled: false
+ClassAndModuleChildren:
+  Enabled: false
+MultilineIfModifier:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+HasAndBelongsToMany:
+  Enabled: false

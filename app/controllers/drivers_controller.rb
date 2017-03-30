@@ -7,12 +7,12 @@ class DriversController < ApplicationController
   end
 
   def create
-    run Driver::Create do |result|
-      flash[:alert] = 'Success create!'
-      redirect_to action: :index and return
+    run Driver::Create do |_result|
+      flash[:notice] = I18n.t('driver.create')
+      redirect_to(action: :index) && return
     end
     flash[:alert] = AlertsViewHandler.call(result)
-    redirect_to :controller => "drivers", :action => "index"
+    redirect_to controller: 'drivers', action: 'index'
   end
 
   def new
@@ -21,9 +21,9 @@ class DriversController < ApplicationController
   end
 
   def destroy
-    run Driver::Destroy do |result|
-      flash[:notice] = 'Success Destroy!'
-      redirect_to :controller => "drivers", :action => "index" and return
+    run Driver::Destroy do |_result|
+      flash[:notice] = I18n.t('driver.destroy')
+      redirect_to(controller: 'drivers', action: 'index') && return
     end
   end
 end

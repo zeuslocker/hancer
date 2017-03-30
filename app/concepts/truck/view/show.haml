@@ -1,4 +1,10 @@
-11
-= number_plate
-= model.driver.full_name
-%br
+%tr
+  %td
+    %input{type: 'text', value: number_plate}
+  %td
+    %select
+      %option{value: current_driver.id}
+        = current_driver.full_name
+      = drivers_select_options
+  %td
+    = destroy_truck
