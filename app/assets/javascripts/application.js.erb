@@ -15,3 +15,14 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(function (){
+  $(document).on('click', '#js-submit-driver', function (event){
+    $('#js-btn-submit-form').trigger("click");
+  });
+
+  $(document).on("click", '#js-add-input', function (event){
+  //  var new_driver_html = "= concept('driver/cell/new', ::Driver.new) "
+  //  $('.js-driver-start-label').prepend(new_driver_html);
+  });
+});

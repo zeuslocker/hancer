@@ -20,9 +20,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  brand:
+    name: 'Sjåfører'
   driver:
     create: 'Driver successfully created!'
     destroy: 'Driver successfully removed!'
+    form:
+      input:
+        placeholder: 'Sjåførens navn'
+      submit: 'Create'
+      save: 'Lagre'
+      add-input: 'Opprett sjåfør'
   truck:
     create: 'Truck successfully created!'
     destroy: 'Truck successfully removed!'

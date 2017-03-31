@@ -7,7 +7,7 @@ class Driver
       end
 
       def destroy
-        link_to(image_tag('delete_row'), driver_path(model))
+        link_to(image_tag('delete_row'), driver_path(model), method: :delete)
       end
     end
   end

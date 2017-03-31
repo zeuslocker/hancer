@@ -1,3 +1,7 @@
 = form_for(model) do |f|
-  = f.text_field :full_name
-  = f.submit
+  %tr.driver-box__bgtruck
+    %td.driver-box__td
+      = f.text_field :full_name, class: 'driver-box__input driver-box__text', placeholder: I18n.t('driver.form.input.placeholder'), autofocus: true
+      = f.submit I18n.t('driver.form.submit'), style: 'display: none;', id: 'js-btn-submit-form'
+    %td
+      = link_to image_tag('delete_row.png'), '#', id: 'js-clean-field'
