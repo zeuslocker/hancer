@@ -22,3 +22,12 @@ body {
   position: absolute;
   top: 20px;
 }
+.bs__table_borderless > tbody > tr > td,
+.bs__table_borderless > tbody > tr > th,
+.bs__table_borderless > tfoot > tr > td,
+.bs__table_borderless > tfoot > tr > th,
+.bs__table_borderless > thead > tr > td,
+.bs__table_borderless > thead > tr > th {
+    border: none;
+    vertical-align: middle;
+}

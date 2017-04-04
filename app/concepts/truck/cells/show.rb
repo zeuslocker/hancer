@@ -1,5 +1,5 @@
 class Truck
-  module Cell
+  class Cell
     class Show < Trailblazer::Cell
       delegate :number_plate, to: :model
 

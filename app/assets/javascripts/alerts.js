@@ -1,21 +1,22 @@
 function initAlert() {
   // Toastr options
   toastr.options = {
-    'closeButton': true,
-    'debug': true,
-    'progressBar': false,
-    'preventDuplicates': true,
-    'positionClass': 'toast-top-center',
-    'onclick': null,
-    'showDuration': '6000000000000',
-    'hideDuration': '100',
-    'timeOut': '7000',
-    'extendedTimeOut': '1000',
-    'showEasing': 'swing',
-    'hideEasing': 'linear',
-    'showMethod': 'fadeIn',
-    'hideMethod': 'fadeOut'
-  };
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": true,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
 }
 
 function parseAlerts(json) {
@@ -24,7 +25,7 @@ function parseAlerts(json) {
     mode = $alert.data('options').mode,
     toasterMap = {
       'alert': 'error',
-      'notice': 'info'
+      'notice': 'success'
     };
 
   applyMode(mode);
@@ -51,7 +52,7 @@ function parseAlerts(json) {
 function showAlert(message, key) { // eslint-disable-line
   var toasterMap = {
     'alert': 'error',
-    'notice': 'info'
+    'notice': 'success'
   };
 
   toastr[toasterMap[key]](message);

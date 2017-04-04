@@ -1,0 +1,8 @@
+= form_for(model['model']) do |f|
+  %tr.driver-box__bgtruck
+    %td.driver-box__td
+      = f.text_field :number_plate, class: 'driver-box__input driver-box__text', placeholder: I18n.t('driver.form.input.placeholder'), autofocus: true
+      = f.select(:driver_id, form_driver_options, {}, class: 'form-control form-box__select')
+      = f.submit I18n.t('driver.form.submit'), style: 'display: none;', id: 'js-btn-submit-form'
+    %td
+      = link_to image_tag('delete_row.png'), '#', id: 'js-clean-field'

@@ -1,0 +1,17 @@
+.form-box__select{
+  border: 1px solid #D0EFFF;
+  border-radius: 2px;
+  vertical-align: middle;
+  padding: 9px;
+  height: 40px;
+  display: inherit;
+  width: 222px;
+  color: #003fff;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th,
+.table > tfoot > tr > th, .table > thead > tr > td,
+.table > tbody > tr > td, .table > tfoot > tr > td {
+  border: none;
+  vertical-align: middle;
+}

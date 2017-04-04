@@ -34,6 +34,8 @@ en:
       save: 'Lagre'
       add-input: 'Opprett sjåfør'
   truck:
+    brand:
+      name: 'Lastebiler'
     create: 'Truck successfully created!'
     destroy: 'Truck successfully removed!'
   home:
