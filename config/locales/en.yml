@@ -21,8 +21,10 @@
 
 en:
   brand:
-    name: 'Sjåfører'
+    name: 'K.R. HANSEN TRANSPORT'
   driver:
+    brand:
+      name: 'Sjåfører'
     create: 'Driver successfully created!'
     destroy: 'Driver successfully removed!'
     form:
@@ -34,4 +36,17 @@ en:
   truck:
     create: 'Truck successfully created!'
     destroy: 'Truck successfully removed!'
+  home:
+    bill:
+      title: 'Fakturagrunnlag'
+    client:
+      title: 'Kunder'
+    point:
+      title: 'Hentesteder'
+    truck:
+      title: 'Lastebiler'
+    driver:
+      title: 'Sjåfører'
+    register:
+      title: 'Register kjøring'
   destroy: 'Destroy'
