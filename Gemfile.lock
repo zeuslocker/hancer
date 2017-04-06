@@ -1,5 +1,18 @@
+GIT
+  remote: https://github.com/frank184/sweet-alert-rails.git
+  revision: d72b35828a60f00a49cd0938017cea7b914d6ef8
+  specs:
+    sweet-alert (0.0.8)
+
+GIT
+  remote: https://github.com/humancopy/sweet-alert-rails-confirm.git
+  revision: 7fb307cd52600b5a6e49e0c8e4a43f75b7784fdf
+  specs:
+    sweet-alert-confirm (0.4.1)
+
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.0.2)
       actionpack (= 5.0.2)
@@ -39,6 +52,10 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     builder (3.2.3)
     byebug (9.0.6)
     cells (4.1.6)
@@ -82,6 +99,8 @@ GEM
       temple (>= 0.8.0)
       tilt
     i18n (0.8.1)
+    i18n-js (3.0.0.rc15)
+      i18n (~> 0.6, >= 0.6.6)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -136,6 +155,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.2)
       sprockets-rails (>= 2.0.0)
+    rails-assets-sweetalert (1.1.3)
     rails-dom-testing (2.0.2)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6)
@@ -176,6 +196,10 @@ GEM
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
+    sprockets-es6 (0.9.2)
+      babel-source (>= 5.8.11)
+      babel-transpiler
+      sprockets (>= 3.0.0)
     sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
@@ -235,6 +259,7 @@ DEPENDENCIES
   cells-haml
   cells-rails
   coffee-rails (~> 4.2)
+  i18n-js
   jbuilder (~> 2.5)
   jquery-rails
   less-rails
@@ -243,9 +268,14 @@ DEPENDENCIES
   pry
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rails-assets-sweetalert (~> 1.1.3)!
   sass-rails (~> 5.0)
   simple_form
+  sprockets (>= 3.0.0.beta)
+  sprockets-es6
   sqlite3
+  sweet-alert!
+  sweet-alert-confirm!
   therubyracer
   toastr-rails
   trailblazer

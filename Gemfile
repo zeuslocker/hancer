@@ -16,6 +16,14 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'toastr-rails'
+gem 'sprockets', '>=3.0.0.beta'
+gem 'sprockets-es6'
+gem "i18n-js"
+source "https://rails-assets.org" do
+  gem "rails-assets-sweetalert", "~> 1.1.3"
+end
+gem 'sweet-alert', :git => 'https://github.com/frank184/sweet-alert-rails.git'
+gem 'sweet-alert-confirm', :git => 'https://github.com/humancopy/sweet-alert-rails-confirm.git'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record

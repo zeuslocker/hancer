@@ -1,5 +1,6 @@
 %tr.driver-box__bgtruck
   %td.driver-box__td
-    = full_name
+    = fields_for('drivers[]', model) do |ff|
+      = ff.text_field :full_name, class: 'driver-box__input driver-box__text', placeholder: I18n.t('driver.form.input.placeholder'), autofocus: true
   %td
     = destroy

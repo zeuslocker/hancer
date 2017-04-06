@@ -1,6 +1,7 @@
 = navbar
 .container
-  %table.table.bs__table_borderless
-    %tbody.js-driver-start-label
-      = new_driver_form
-      = show_drivers
+  = form_tag update_collection_drivers_path, id: 'js-main-driver-form', multipart: true do
+    %table.table.bs__table_borderless
+      %tbody.js-driver-start-label
+        = render view: 'new'
+        = show_drivers

@@ -25,7 +25,7 @@ en:
   driver:
     brand:
       name: 'Sjåfører'
-    create: 'Driver successfully created!'
+    create: 'Drivers successfully modified!'
     destroy: 'Driver successfully removed!'
     form:
       input:
@@ -51,4 +51,8 @@ en:
       title: 'Sjåfører'
     register:
       title: 'Register kjøring'
+  helpers:
+    links:
+      yes_destroy: "Yes, delete it!"
+      confirm: "Are you sure?"
   destroy: 'Destroy'
