@@ -15,10 +15,14 @@ class Truck
         model.driver
       end
 
+      def other_drivers
+        drivers.includes(:truck).where(trucks: {driver_id: nil})
+      end
+
       def drivers_select_options
         res = ''
         res << content_tag(:option, current_driver.full_name, value: current_driver.id)
-        drivers.where.not(id: current_driver).inject(res) do |acc, driver|
+        other_drivers.inject(res) do |acc, driver|
           acc << content_tag(:option, driver.full_name, value: driver.id)
         end
       end

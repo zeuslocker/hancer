@@ -22,7 +22,7 @@ class Truck
       end
 
       def form_driver_options
-        ::Driver.all.collect{|x| [x.full_name, x.id]}
+        ::Driver.all.collect { |x| [x.full_name, x.id] }
       end
 
       def destroy

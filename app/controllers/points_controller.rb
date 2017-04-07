@@ -22,6 +22,6 @@ class PointsController < ApplicationController
 
   def destroy
     run Point::Destroy
-    render json: {notice: I18n.t('driver.destroy')}
+    render json: { notice: I18n.t('driver.destroy') }
   end
 end

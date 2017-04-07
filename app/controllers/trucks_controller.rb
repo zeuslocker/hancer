@@ -22,6 +22,6 @@ class TrucksController < ApplicationController
 
   def destroy
     run Truck::Destroy
-    render json: {notice: I18n.t('truck.destroy')}
+    render json: { notice: I18n.t('truck.destroy') }
   end
 end
