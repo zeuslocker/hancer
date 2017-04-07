@@ -38,6 +38,17 @@ en:
       name: 'Lastebiler'
     create: 'Trucks successfully modified!'
     destroy: 'Truck successfully removed!'
+    form:
+      add-input: 'Opprett lastebil'
+      input:
+        placeholder: 'Fyll inn registeringsnummer'
+  point:
+    brand:
+      name: 'Hentesteder'
+    form:
+      add-input: 'Opprett hentested'
+      input:
+        placeholder: 'Fyll inn på hentested'
   home:
     bill:
       title: 'Fakturagrunnlag'

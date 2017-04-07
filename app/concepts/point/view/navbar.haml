@@ -8,7 +8,7 @@
         %span.icon-bar
         %span.icon-bar
       .navbar-brand.navbar-brand-centered.brand-color
-        = I18n.t('driver.brand.name')
+        = I18n.t('point.brand.name')
     / Collect the nav links, forms, and other content for toggling
     #navbar-brand-centered.collapse.navbar-collapse
       %ul.nav.navbar-nav
@@ -16,9 +16,9 @@
           = link_to image_tag('back.png'), root_path
       %ul.nav.navbar-nav.navbar-right
         %li
-          =link_to nil,  new_field_drivers_path, style: 'display: none', class: 'js-add-new-driver'
+          =link_to nil,  new_field_points_path, style: 'display: none', class: 'js-add-new-point'
           %button{type: 'button', class: 'btn btn-default button__add-row', id: 'js-add-input'}
-            = I18n.t('driver.form.add-input')
+            = I18n.t('point.form.add-input')
         %li
-          %button{type: 'button', class: 'btn btn-default disabled', id: 'js-submit-driver'}
+          %button{type: 'button', class: 'btn btn-default disabled', id: 'js-submit-point'}
             = I18n.t('driver.form.save')

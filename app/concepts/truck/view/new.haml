@@ -1,7 +1,7 @@
 %tr.driver-box__bgtruck
   %td.driver-box__td
     = fields_for("trucks[new#{new_truck_key}]", model['model']) do |ff|
-      = ff.text_field :number_plate, class: 'driver-box__input driver-box__text', placeholder: I18n.t('driver.form.input.placeholder'), autofocus: true
+      = ff.text_field :number_plate, class: 'driver-box__input driver-box__text', placeholder: I18n.t('truck.form.input.placeholder'), autofocus: true
       = ff.select(:driver_id, form_driver_options, {}, class: 'form-control form-box__select')
   %td
     = link_to image_tag('delete_row.png'), ''

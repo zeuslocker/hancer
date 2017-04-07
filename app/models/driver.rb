@@ -1,3 +1,3 @@
 class Driver < ApplicationRecord
-  has_one :truck
+  has_one :truck, dependent: :destroy
 end
