@@ -13,34 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
-//= require_tree .
 //= require sweet-alert
+//=require alerts
 //= require sweet-alert-confirm
 //= require i18n.js
 //= require i18n/translations
-
-$(function() {
-    $(document).on('click', '#js-submit-driver', function(event) {
-        $('#js-main-driver-form').trigger("submit");
-    });
-
-    $(document).on("click", '#js-add-input', function(event) {
-        var new_driver_html = $.ajax({
-            type: 'GET',
-            dataType: "text",
-            url: $('.js-add-new-driver').attr('href'),
-            success: function(result) {
-                successNewDriverFiled(result);
-            },
-            error: function(result) {
-                successNewDriverFiled(result);
-            }
-        });
-    });
-
-    function successNewDriverFiled(result) {
-        debugger;
-        $('.js-driver-start-label').prepend(result);
-    }
-});

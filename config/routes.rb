@@ -7,6 +7,11 @@ Rails.application.routes.draw do
       get 'new_field'
     end
   end
-  resources :trucks, except: [:edit]
+  resources :trucks, except: [:edit] do
+    collection do
+      post 'update_collection'
+      get 'new_field'
+    end
+  end
 
 end

@@ -36,7 +36,7 @@ en:
   truck:
     brand:
       name: 'Lastebiler'
-    create: 'Truck successfully created!'
+    create: 'Trucks successfully modified!'
     destroy: 'Truck successfully removed!'
   home:
     bill:

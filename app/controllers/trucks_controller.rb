@@ -6,12 +6,22 @@ class TrucksController < ApplicationController
     render_form :index, result: result
   end
 
-  def destroy
-    run Truck::Destroy do |_result|
-      flash[:notice] = I18n.t('truck.destroy')
-      redirect_to(controller: 'trucks', action: :index) && return
+  def update_collection
+    run Truck::UpdateCollection do |_result|
+      flash[:notice] = I18n.t('truck.create')
+      redirect_to(action: :index) && return
     end
     flash[:alert] = AlertsViewHandler.call(result)
-    redirect_to(controller: 'trucks', action: :index)
+    redirect_to controller: 'trucks', action: 'index'
+  end
+
+  def new_field
+    run Truck::New
+    render_form :new, result: result, layout: false
+  end
+
+  def destroy
+    run Truck::Destroy
+    render json: {notice: I18n.t('truck.destroy')}
   end
 end

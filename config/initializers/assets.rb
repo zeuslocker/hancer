@@ -12,3 +12,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( toastr.css )
 Rails.application.config.assets.precompile += %w( toastr.js )
 Rails.application.config.assets.precompile += %w( alerts.js )
+%w( drivers trucks home ).each do |controller|
+  Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
+end

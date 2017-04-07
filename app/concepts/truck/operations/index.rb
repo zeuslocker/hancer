@@ -6,7 +6,7 @@ class Truck
     step TrailblazerHelpers::Steps::Driver::SetupDrivers
 
     def setup_trucks!(options, **)
-      options['trucks'] = ::Truck.all
+      options['trucks'] = ::Truck.all.order(created_at: :desc)
     end
   end
 end

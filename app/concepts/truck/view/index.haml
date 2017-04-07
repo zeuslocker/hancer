@@ -1,6 +1,7 @@
 = navbar
 .container
-  %table.table.bs__table_borderless
-    %tbody.js-driver-start-label
-      =new_truck_form
-      =show_trucks
+  = form_tag update_collection_trucks_path, id: 'js-main-truck-form', multipart: true do
+    %table.table.bs__table_borderless
+      %tbody.js-truck-start-label
+        = render view: 'new'
+        = show_trucks

@@ -6,8 +6,8 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title= content_for?(:title) ? yield(:title) : "Hansen"
     = csrf_meta_tags
-    = stylesheet_link_tag "application", :media => "all"
-    = javascript_include_tag "application", :media => "all"
+    = stylesheet_link_tag "application",params[:controller], :media => "all"
+    = javascript_include_tag "application", params[:controller], :media => "all"
     = stylesheet_link_tag 'toastr', media: 'all'
     = javascript_include_tag 'toastr', media: 'all'
     / For third-generation iPad with high-resolution Retina display:
