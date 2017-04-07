@@ -1,0 +1,7 @@
+= navbar
+.container
+  = form_tag update_collection_points_path, id: 'js-main-point-form', multipart: true do
+    %table.table.bs__table_borderless
+      %tbody.js-point-start-label
+        = render view: 'new'
+        = show_points
