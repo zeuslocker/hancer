@@ -21,4 +21,9 @@ Rails.application.routes.draw do
       get 'new_field'
     end
   end
+
+  resources :clients, exept: [:edit] do
+    post 'update_collection'
+    get 'new_field'
+  end
 end

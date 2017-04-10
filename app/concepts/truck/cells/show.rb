@@ -16,7 +16,7 @@ class Truck
       end
 
       def other_drivers
-        drivers.includes(:truck).where(trucks: {driver_id: nil})
+        drivers.includes(:truck).where(trucks: { driver_id: nil })
       end
 
       def drivers_select_options

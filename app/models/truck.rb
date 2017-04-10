@@ -1,3 +1,3 @@
 class Truck < ApplicationRecord
-  belongs_to :driver, dependent: :destroy
+  belongs_to :driver
 end
