@@ -22,8 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :clients, exept: [:edit] do
-    post 'update_collection'
-    get 'new_field'
+  resources :clients, except: [:edit] do
+    collection do
+      post 'update_collection'
+      get 'new_field'
+      get 'new_input'
+    end
   end
 end

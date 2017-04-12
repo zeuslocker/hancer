@@ -1,0 +1,26 @@
+.form__ckeck_box{
+  /* Oval: */
+border: 1px solid #D0EFFF;
+}
+.plus-btn{
+background: #D0EFFF;
+border: 1px solid #D0EFFF;
+border-radius: 2px;
+width: 42px;
+height: 40px;
+margin-left: 21px;
+}
+.destroy-field__image{
+  position: relative;
+  bottom: 18px;
+  right: 15px;
+}
+.destroy-field__image:hover{
+  position: relative;
+  bottom: 18px;
+  right: 15px;
+  cursor: pointer;
+}
+.driver-box__input-wrapper{
+  display: inline-block;
+}

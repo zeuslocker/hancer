@@ -49,6 +49,19 @@ en:
       add-input: 'Opprett hentested'
       input:
         placeholder: 'Fyll inn på hentested'
+  client:
+    brand:
+      name: 'Kunder'
+    create: 'Clients successfully modified!'
+    destroy: 'Clients successfully removed!'
+    form:
+      add-input: 'Opprett ny kunde'
+      input:
+        placeholder: 'Kundenavn'
+      input-field:
+        placeholder: 'Input'
+      fraktnr: 'Fraktnr.'
+      points: 'Hentested'
   home:
     bill:
       title: 'Fakturagrunnlag'

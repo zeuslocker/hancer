@@ -18,3 +18,4 @@
 //= require sweet-alert-confirm
 //= require i18n.js
 //= require i18n/translations
+//= require form

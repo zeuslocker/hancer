@@ -8,6 +8,16 @@
     width: 222px;
 }
 
+.driver-box__input_mini {
+    /* Rectangle 4: */
+    background: #FFFFFF;
+    border: 1px solid #D0EFFF;
+    border-radius: 2px;
+    vertical-align: middle;
+    padding: 9px;
+    width: 60px;
+}
+
 .driver-box__text {
     /* %: */
     font-family: .AppleSystemUIFont;
