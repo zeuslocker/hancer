@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
 
   def index
     run Client::Index
-    render_form :index
+    render_form :index, result: result
   end
 
   def update_collection
@@ -21,6 +21,8 @@ class ClientsController < ApplicationController
   end
 
   def destroy
+    run Client::Destroy
+    render json: { notice: I18n.t('driver.destroy') }
   end
 
   def new_input

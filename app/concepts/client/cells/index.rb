@@ -3,6 +3,10 @@ class Client
     class Index < Trailblazer::Cell
       include TrailblazerHelpers::Cells::UniqKey
 
+      def show_clients
+        concept('client/cell/show', collection: model['clients'])
+      end
+
       def navbar
         concept('client/cell/navbar', nil)
       end

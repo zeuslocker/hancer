@@ -42,5 +42,35 @@ var OperationForm = {
   },
   submitForm: function (event){
     $('#js-main-form').trigger("submit");
+  },
+  deleteModel: function (event) {
+    debugger;
+    event.preventDefault();
+    event.stopPropagation();
+    OperationForm._destroyElementSwall(event.target.closest('a'), OperationForm._destroySucessCallback);
+  },
+  _destroySucessCallback: function (result, element) {
+    element.closest('.driver-box__bgtruck').remove(); // eslint-disable-line  no-undef
+    parseAlerts(result);
+  },
+  _destroyElementSwall: function (button, successCallback) {
+    var $buttonDelete = button;
+
+    swal({
+      title: I18n.t('helpers.links.confirm'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('helpers.links.yes_destroy'),
+      text: "You will not be able to recover this record!",
+      closeOnConfirm: true
+    }, function () {
+      $.ajax({
+        type: 'DELETE',
+        dataType: "json",
+        url: $buttonDelete.href,
+        success: (result) => { successCallback(result, $buttonDelete) }
+      });
+    });
   }
 }

@@ -1,0 +1,9 @@
+= ff.text_field :full_name, class: 'driver-box__input driver-box__text', placeholder: I18n.t('client.form.input.placeholder'), autofocus: true
+.checkbox.checkbox-circle
+  = ff.check_box :fraktnr, {id: "#{new_key}1", class: 'checkbox checkbox-circle'}, true, false
+  %label{for: "#{new_key}1"}
+    = I18n.t('client.form.fraktnr')
+.checkbox.checkbox-circle
+  = ff.check_box :points, {id: "#{new_key}2", class: 'checkbox checkbox-circle'}, true, false
+  %label{for: "#{new_key}2"}
+    = I18n.t('client.form.points')
