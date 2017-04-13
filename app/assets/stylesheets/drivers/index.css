@@ -23,7 +23,7 @@
 
 .navbar-nav>li.maintitle__title-name {
     /* Sjåfører: */
-    font-family: AppleSystemUIFont;
+    font-family: 'AppleSystemUIFont';
     font-size: 16px;
     letter-spacing: 0;
     float: none;

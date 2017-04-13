@@ -14,7 +14,7 @@
     }
     .navbar>.container .navbar-brand-centered, .navbar>.container-fluid .navbar-brand-centered {
         margin-left: -80px;
-        font-family: .AppleSystemUIFont;
+        font-family: '.AppleSystemUIFont';
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0.5px;
