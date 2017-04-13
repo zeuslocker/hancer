@@ -1,23 +1,25 @@
-development:
+default: &default
   adapter: postgresql
   encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432​
+
+development:
+  <<: *default
   database: hansen_development
-  pool: 5
-  username:
-  password:
 
 test: &TEST
-  adapter: postgresql
-  encoding: utf8
+  <<: *default
   database: hansen_test
-  pool: 5
-  username:
-  password:
+
+staging:
+  <<: *default
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER_NAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: hansen_production
-  pool: 5
-  username:
-  password:
+  <<: *default
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER_NAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>

@@ -1,0 +1,17 @@
+---
+engines:
+  eslint:
+    enabled: true
+  rubocop:
+    config:
+      file: .rubocop.yml
+    enabled: true
+ratings:
+  paths:
+  - 'app/**/*'
+  - 'lib/**/*'
+  - '**.rb'
+exclude_paths:
+- config/
+- db/
+- vendor/
