@@ -57,7 +57,7 @@ body {
 
 .driver-box__text {
     /* %: */
-    font-family: .AppleSystemUIFont;
+    font-family: 'AppleSystemUIFont';
     font-size: 14px;
     color: #202020;
     letter-spacing: 0;
