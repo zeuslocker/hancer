@@ -26,7 +26,7 @@ class Truck
       end
 
       def destroy
-        link_to(image_tag('delete_row'), truck_path(model), class: 'js-delete-driver')
+        link_to(image_tag('delete_row.png'), truck_path(model), class: 'js-delete-driver')
       end
     end
   end

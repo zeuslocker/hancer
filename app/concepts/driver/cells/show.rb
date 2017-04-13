@@ -7,7 +7,7 @@ class Driver
       end
 
       def destroy
-        link_to(image_tag('delete_row'), driver_path(model), class: 'js-delete-driver')
+        link_to(image_tag('delete_row.png'), driver_path(model), class: 'js-delete-driver')
       end
     end
   end

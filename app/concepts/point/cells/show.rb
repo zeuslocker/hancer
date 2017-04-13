@@ -7,7 +7,7 @@ class Point
       end
 
       def destroy
-        link_to(image_tag('delete_row'), point_path(model), class: 'js-delete-point')
+        link_to(image_tag('delete_row.png'), point_path(model), class: 'js-delete-point')
       end
     end
   end
