@@ -2,9 +2,7 @@ class Client
   class Cell
     class Show < Trailblazer::Cell
       include TrailblazerHelpers::Cells::UniqKey
-      def inputs
-        model.inputs
-      end
+      delegate :inputs, to: :model
 
       def client_inputs
         concept('client/cell/new_input', collection: model.inputs)

@@ -2,9 +2,9 @@ module RenderOperationHelper
   def render_form(action, options = {})
     flash_render(options)
     @op_result = options&.fetch(:result, result)
-    if !@op_result
+    unless @op_result
       render(html: concept("#{cell_path}/cell/#{action}", nil),
-                            layout: false)
+             layout: false)
       return
     end
     render html: concept("#{cell_path}/cell/#{action}",

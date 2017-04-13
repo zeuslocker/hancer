@@ -5,9 +5,7 @@ class Note
         ::Truck.all
       end
 
-      def notes
-
-      end
+      def notes; end
     end
   end
 end

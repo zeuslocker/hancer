@@ -4,10 +4,9 @@ class Client
     step :prepare_params
     step :create_or_update
 
-
-    def prepare_params(options, params:, **)
-      params[:clients].each do |k, v|
-        next if !v[:inputs]
+    def prepare_params(_options, params:, **)
+      params[:clients].each do |_k, v|
+        next unless v[:inputs]
         v[:inputs].each do |key, value|
           value.merge!(id: key)
         end

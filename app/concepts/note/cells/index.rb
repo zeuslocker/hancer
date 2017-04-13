@@ -2,7 +2,7 @@ class Note
   class Cell
     class Index < Trailblazer::Cell
       def navbar
-        concept('note/cell/navbar', params.fetch(:date, Time.current).strftime("%Y-%m-%d"))
+        concept('note/cell/navbar', params.fetch(:date, Time.current).strftime('%Y-%m-%d'))
       end
 
       def show_notes
