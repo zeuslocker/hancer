@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   def index
     run Note::Index
-    render_form :index
+    render_form :index, result: result
   end
 
   def update_collection

@@ -33,13 +33,3 @@
     background: #003FFF;
     text-align: center;
 }
-
-.driver-box__bgtruck {
-    /* Bg Truck: */
-    height: 80px;
-    background: #FFFFFF;
-    border-color: #D0EFFF;
-    border-style: solid;
-    border-width: 1px;
-    valign: middle;
-}

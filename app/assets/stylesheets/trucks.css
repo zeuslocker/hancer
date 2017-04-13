@@ -8,7 +8,11 @@
   width: 222px;
   color: #003fff;
 }
-
+.form-box__select_blue{
+  background: #003fff;
+  color: #FFFFFF;
+  text-indent: 7px;
+}
 .table > thead > tr > th, .table > tbody > tr > th,
 .table > tfoot > tr > th, .table > thead > tr > td,
 .table > tbody > tr > td, .table > tfoot > tr > td {
