@@ -3,7 +3,7 @@ class Client
     class NewInput < Trailblazer::Cell
       include ::TrailblazerHelpers::Cells::UniqKey
       def client_id
-        model&.client_id || params[:client_id]
+        (model&.client_id || params[:client_id])
       end
 
       def input_id

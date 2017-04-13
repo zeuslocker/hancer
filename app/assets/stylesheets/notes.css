@@ -1,0 +1,8 @@
+.date-picker{
+  color: #FFFFFF;
+  background: #003fff;
+  border: none;
+  line-height: 10px !important;
+  position: relative;
+  top: -3px;
+}

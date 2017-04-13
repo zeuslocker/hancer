@@ -1,0 +1,6 @@
+= navbar
+.container
+  = form_tag update_collection_notes_path, id: 'js-main-form', multipart: true do
+    %table.table.bs__table_borderless
+      %tbody.js-form-start-label
+        = show_notes

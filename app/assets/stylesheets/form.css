@@ -24,3 +24,7 @@ margin-left: 21px;
 .driver-box__input-wrapper{
   display: inline-block;
 }
+.back__img{
+  position: relative;
+  top: -3px;
+}

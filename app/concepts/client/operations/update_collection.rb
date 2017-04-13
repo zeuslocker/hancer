@@ -1,11 +1,11 @@
 class Client
   class UpdateCollection < Trailblazer::Operation
+    step TrailblazerHelpers::Steps::ReverseParams
     step :prepare_params
     step :create_or_update
 
 
     def prepare_params(options, params:, **)
-      params[:clients]= params[:clients].to_a.reverse.to_h
       params[:clients].each do |k, v|
         next if !v[:inputs]
         v[:inputs].each do |key, value|

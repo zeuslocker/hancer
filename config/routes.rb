@@ -29,4 +29,12 @@ Rails.application.routes.draw do
       get 'new_input'
     end
   end
+
+  resources :notes, except: [:edit] do
+    collection do
+      post 'update_collection'
+      get 'new_field'
+      get 'new_input'
+    end
+  end
 end
