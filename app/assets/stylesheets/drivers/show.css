@@ -4,7 +4,7 @@
     border: 1px solid #D0EFFF;
     border-radius: 2px;
     vertical-align: middle;
-    padding: 9px;
+    padding: 7px;
     width: 222px;
 }
 
@@ -14,7 +14,7 @@
     border: 1px solid #D0EFFF;
     border-radius: 2px;
     vertical-align: middle;
-    padding: 9px;
+    padding: 7px;
     width: 60px;
 }
 
@@ -30,6 +30,6 @@
     /* Oval: */
     background: #D0EFFF;
     /* Rectangle 4: */
-    background: #003FFF;
+    background: #0045FA;
     text-align: center;
 }

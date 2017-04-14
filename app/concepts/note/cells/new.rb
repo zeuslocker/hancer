@@ -24,7 +24,7 @@ class Note
       end
 
       def form_identifier
-        model.id || options[:index]
+        options[:index]
       end
       def drivers_without_current
         ::Driver.where.not(id: model.truck_driver_id)

@@ -2,20 +2,20 @@
   border: 1px solid #D0EFFF;
   border-radius: 2px;
   vertical-align: middle;
-  padding: 9px;
-  height: 40px;
+  padding: 7px;
+  height: 38px;
   display: inherit;
   width: 222px;
-  color: #003fff;
+  color: #0045FA;
 }
 .form-box__select_blue{
-  background: #003fff;
+  background: #0045FA;
   color: #FFFFFF;
   text-indent: 7px;
 }
 .form-box__select_white-blue{
   background: #cdf0fe;
-  color: #003fff;
+  color: #0045FA;
   text-indent: 7px;
 }
 .table > thead > tr > th, .table > tbody > tr > th,

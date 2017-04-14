@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       post 'update_collection'
       get 'new_field'
       get 'new_input'
+      get 'client_fields_with_inputs'
     end
   end
 end

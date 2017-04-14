@@ -15,6 +15,11 @@ class NotesController < ApplicationController
       redirect_to controller: 'notes', action: 'index'
   end
 
+  def client_fields_with_inputs
+    run Note::ClientFieldsWithInputs
+    render_form :client_fields_with_inputs, layout: false
+  end
+
   def new_field
     #  run Note::New
     #  render_form :new, result: result, layout: false

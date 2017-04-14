@@ -4,6 +4,9 @@ class Note
       def navbar
         concept('note/cell/navbar', params.fetch(:date, Time.current).strftime('%Y-%m-%d'))
       end
+      def new_client_fields_with_inputs_link
+        link_to nil, client_fields_with_inputs_notes_path, class: 'input_client-inputs-field_link hide'
+      end
 
       def show_notes
         ''.tap do |result|
