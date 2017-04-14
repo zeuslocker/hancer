@@ -1,0 +1,4 @@
+%td
+  = ff.fields_for :clients, model.clients.new  do |client_ff|
+    = client_ff.select(:id, form_select_clients, {}, class: 'form-control form-box__select form-box__select_white-blue js-render-client-fields')
+%td

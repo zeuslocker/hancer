@@ -2,7 +2,7 @@
 
 $(document).on('click', '.js-delete-point', OperationPoint.deletePointElement);
 
-$(document).on('change', 'form :input', OperationPoint.activateSaveButton);
+$(document).on('input', 'form :input', OperationPoint.activateSaveButton);
 
 $(document).on('click', '#js-submit-point', OperationPoint.submitForm);
 

@@ -1,9 +1,11 @@
-%tr.form-box
-  %td
-    = fields_for("notes[]", model) do |ff|
+= fields_for("notes[#{form_identifier}]", model) do |ff|
+  %tr.form-box
+    %td
       = ff.select(:truck_id, form_select_trucks, {}, class: 'form-box__select form-box__select_blue')
       = ff.select(:truck_driver_id, form_select_drivers, {}, class: 'form-box__select form-box__select_blue')
-  %td
-    = link_to image_tag('delete_row.png'), '', id: 'js-clean-field'
-  %br
-  .myborder
+      = ff.hidden_field(:id, value: note_id)
+    %td
+      = link_to image_tag('delete_row.png'), '', id: 'js-clean-field'
+  %tr.form-box__child
+    = render view: 'client_fields', locals: {ff: ff}
+  %tr.form-box__footer

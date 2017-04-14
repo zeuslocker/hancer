@@ -6,23 +6,36 @@ class Note
       include ActionView::Helpers::OutputSafetyHelper
 
       def form_select_trucks
-        result = ::Truck.where.not(id: model.truck_id).order(created_at: :desc).collect { |truck| [truck.number_plate, truck.id] }
-        result.prepend([model.truck_number_plate, model.truck_id])
-        result
+        trucks_without_current.order(created_at: :desc).map do |truck|
+          [truck.number_plate, truck.id]
+        end.prepend([model.truck_number_plate, model.truck_id])
       end
 
       def form_select_drivers
-        result = ::Driver.where.not(id: model.truck_driver_id).order(created_at: :desc).collect { |driver| [driver.full_name, driver.id] }
-        result.prepend([model.truck.driver.full_name, model.truck.driver.id])
-        result
+        drivers_without_current.order(created_at: :desc).map do |driver|
+          [driver.full_name, driver.id]
+        end.prepend([model.truck.driver.full_name, model.truck.driver.id])
       end
 
-      def drivers_select_options
-        res = ''
-        res << content_tag(:option, current_driver.full_name, value: current_driver.id)
-        other_drivers.inject(res) do |acc, driver|
-          acc << content_tag(:option, driver.full_name, value: driver.id)
+      def form_select_clients
+        ::Client.all.order(created_at: :desc).map do |client|
+          [client.full_name, client.id]
         end
+      end
+
+      def form_identifier
+        model.id || options[:index]
+      end
+      def drivers_without_current
+        ::Driver.where.not(id: model.truck_driver_id)
+      end
+
+      def trucks_without_current
+        ::Truck.where.not(id: model.truck_id)
+      end
+
+      def note_id
+        model.id || 'new'
       end
     end
   end

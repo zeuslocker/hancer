@@ -7,7 +7,7 @@ $(function () {
 
   $(document).on("click", '#js-add-input', function(event) {OperationForm.addInput(event)});
 
-  $(document).on('change', 'form :input', function(event) {OperationForm.activateSaveButton(event)});
+  $(document).on('input', 'form :input', function(event) {OperationForm.activateSaveButton(event)});
 
   $(document).on('click', '#js-submit-form', function(event) {OperationForm.submitForm(event)});
 

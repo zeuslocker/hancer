@@ -2,7 +2,7 @@
 
   $(document).on('click', '.js-delete-truck', OperationTruck.deleteTruckElement);
 
-  $(document).on('change', 'form :input', OperationTruck.activateSaveButton);
+  $(document).on('input', 'form :input', OperationTruck.activateSaveButton);
 
   $(document).on('click', '#js-submit-truck', OperationTruck.submitForm);
 

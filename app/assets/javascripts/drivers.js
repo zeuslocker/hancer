@@ -2,7 +2,7 @@
 
 $(document).on('click', '.js-delete-driver', OperationDriver.deleteDriverElement);
 
-$(document).on('change', 'form :input', OperationDriver.activateSaveButton);
+$(document).on('input', 'form :input', OperationDriver.activateSaveButton);
 
 $(document).on('click', '#js-submit-driver', OperationDriver.submitForm);
 
