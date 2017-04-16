@@ -40,11 +40,11 @@ var OperationForm = {
   activateSaveButton: function (event){
     $('#js-submit-form').removeClass('disabled');
   },
-  submitForm: function (event){
+  submitForm: function (event){debugger;
+    $('.disabled_input').prop('disabled', true);
     $('#js-main-form').trigger("submit");
   },
   deleteModel: function (event) {
-    debugger;
     event.preventDefault();
     event.stopPropagation();
     OperationForm._destroyElementSwall(event.target.closest('a'), OperationForm._destroySucessCallback);

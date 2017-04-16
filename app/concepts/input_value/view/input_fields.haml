@@ -1,0 +1,10 @@
+-if(input.name == 'fraktnr')
+  .col-sm-2
+    = hidden_field_tag("#{form_object}[input_values][][input_id]", input.id)
+    = hidden_field_tag("#{form_object}[input_values][][id]", find_input_value(input)&.id || 'new')
+    = text_field_tag("#{form_object}[input_values][][value]", find_input_value(input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{input.name}")
+-else
+  .col-sm-1
+    = hidden_field_tag("#{form_object}[input_values][][input_id]", input.id)
+    = hidden_field_tag("#{form_object}[input_values][][id]", find_input_value(input)&.id || 'new')
+    = text_field_tag("#{form_object}[input_values][][value]", find_input_value(input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{input.name}")

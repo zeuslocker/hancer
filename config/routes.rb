@@ -30,12 +30,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notes, except: [:edit] do
+  resources :input_values, except: [:edit] do
     collection do
       post 'update_collection'
       get 'new_field'
       get 'new_input'
-      get 'client_fields_with_inputs'
+      post 'client_fields_with_inputs'
+      post 'new_client_select'
     end
   end
 end

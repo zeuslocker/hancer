@@ -1,4 +1,4 @@
 = fields_for "clients[#{client_id}][inputs][#{input_id}]", model do |ff|
   .driver-box__input-wrapper
-    = ff.text_field :name, value: model_value, class: 'driver-box__input_mini driver-box__text', placeholder: 'Input'
+    = ff.text_field :name, value: model_value, class: 'driver-box__input_mini-fixed driver-box__text', placeholder: 'Input'
     = image_tag 'delete_row.png', class: 'destroy-field__image'

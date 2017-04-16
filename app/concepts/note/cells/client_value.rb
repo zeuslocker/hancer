@@ -8,6 +8,10 @@ class Note
       def index
         options[:index]
       end
+
+      def client_index
+        new_key
+      end
     end
   end
 end

@@ -1,0 +1,12 @@
+.note
+  = fields_for "trucks", truck, index: truck_index do |ff|
+    .row.driver-box__bgtruck
+      .col-sm-3
+        = ff.select(:id, form_select_trucks, {},
+                    class: 'form-control form-box__select form-box__select_blue truck_id')
+      .col-sm-2
+        = ff.select(:driver_id, form_select_drivers, {},
+                    class: 'form-control form-box__select form-box__select_blue driver_id')
+    = show_input_values
+    = render view: 'client_fields', locals: {ff: ff, index: truck_index}
+    .row.form-control__border_white

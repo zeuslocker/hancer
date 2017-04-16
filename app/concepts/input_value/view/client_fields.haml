@@ -1,0 +1,4 @@
+.row.driver-box__bgtruck_withoutborder
+  = ff.fields_for "clients", index: index  do |client_ff|
+    .col-sm-3
+      = client_ff.select(:id, form_select_clients, {}, class: 'form-control form-box__select form-box__select_white-blue js-render-client-fields disabled_input')

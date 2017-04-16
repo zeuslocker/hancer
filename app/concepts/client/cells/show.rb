@@ -5,7 +5,7 @@ class Client
       delegate :inputs, to: :model
 
       def client_inputs
-        concept('client/cell/new_input', collection: model.inputs)
+        concept('client/cell/new_input', collection: model.inputs.without_default)
       end
 
       def destroy

@@ -6,11 +6,11 @@ default: &default
 
 development:
   <<: *default
-  database: hansen_development
+  database: hansen1_development
 
 test: &TEST
   <<: *default
-  database: hansen_test
+  database: hansen1_test
 
 staging:
   <<: *default

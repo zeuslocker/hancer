@@ -4,11 +4,16 @@ class Note
       include ActionView::Helpers::FormHelper
       include ActionView::Helpers::FormOptionsHelper
       include ActionView::Helpers::OutputSafetyHelper
+      include TrailblazerHelpers::Cells::UniqKey
 
       def form_select_trucks
         trucks_without_current.order(created_at: :desc).map do |truck|
           [truck.number_plate, truck.id]
         end.prepend([model.truck_number_plate, model.truck_id])
+      end
+
+      def client_index
+        SecureRandom.hex(10)
       end
 
       def form_select_drivers
@@ -26,6 +31,7 @@ class Note
       def form_identifier
         options[:index]
       end
+
       def drivers_without_current
         ::Driver.where.not(id: model.truck_driver_id)
       end

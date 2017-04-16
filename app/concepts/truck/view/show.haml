@@ -2,6 +2,6 @@
   %td.driver-box__td
     = fields_for('trucks[]', model) do |ff|
       = ff.text_field :number_plate, class: 'driver-box__input driver-box__text', placeholder: I18n.t('driver.form.input.placeholder'), autofocus: true
-      = ff.select(:driver_id, raw(drivers_select_options), {}, class: 'form-control form-box__select')
+      = ff.select(:driver_id, raw(drivers_select_options), {}, class: 'form-control form-box__select form-box__select_white-blue-mr')
   %td
     = destroy
