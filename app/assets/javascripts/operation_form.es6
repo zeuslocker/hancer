@@ -44,7 +44,6 @@ var OperationForm = {
     $('#js-main-form').trigger("submit");
   },
   deleteModel: function (event) {
-    debugger;
     event.preventDefault();
     event.stopPropagation();
     OperationForm._destroyElementSwall(event.target.closest('a'), OperationForm._destroySucessCallback);

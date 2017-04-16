@@ -1,2 +1,4 @@
-= fields_for "#{params[:form_object]}[input_values_attributes][#{index}]", client_value  do |ff|
-  = ff.text_field :value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{model.name}"
+.col-sm-1.mg-20
+  = fields_for "#{params[:form_object]}[input_values_attributes][#{index}]", client_value  do |ff|
+    = ff.text_field :value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{model.name}"
+    = ff.hidden_field :input_id, value: model.id

@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get 'new_field'
       get 'new_input'
       get 'client_fields_with_inputs'
+      get 'new_client_select'
     end
   end
 end

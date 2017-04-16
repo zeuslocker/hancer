@@ -7,17 +7,21 @@ class NotesController < ApplicationController
   end
 
   def update_collection
-      run Note::UpdateCollection do |_result|
-        flash[:notice] = I18n.t('driver.create')
-        redirect_to(action: :index) && return
-      end
-      flash[:alert] = AlertsViewHandler.call(result)
-      redirect_to controller: 'notes', action: 'index'
+    run Note::UpdateCollection do |_result|
+      flash[:notice] = I18n.t('driver.create')
+      redirect_to(action: :index) && return
+    end
+    flash[:alert] = AlertsViewHandler.call(result)
+    redirect_to controller: 'notes', action: 'index'
   end
 
   def client_fields_with_inputs
     run Note::ClientFieldsWithInputs
     render_form :client_fields_with_inputs, layout: false
+  end
+
+  def new_client_select
+    render_form :new_client_select, layout: false
   end
 
   def new_field

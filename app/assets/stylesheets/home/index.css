@@ -58,7 +58,18 @@
     border-width: 1px;
     valign: middle;
 }
-
+.driver-box__bgtruck_withoutborder {
+    /* Bg Truck: */
+    height: 58px;
+    background: #FFFFFF;
+    border-left-color:#D0EFFF;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color:#D0EFFF;
+    border-right-style: solid;
+    border-right-width: 1px;
+    valign: middle;
+}
 .form-box {
   background: #FFFFFF;
   border-color: #D0EFFF;
@@ -69,10 +80,8 @@
 .form-box__child{
   background: #FFFFFF;
   border-color: #D0EFFF;
-  position: relative;
-  top: -1px;
-  border-left: 1px solid #D0EFFF;
   valign: middle;
+  height: 70px;
 }
 .form-box__footer{
   height: 20px;

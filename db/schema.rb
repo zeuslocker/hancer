@@ -57,12 +57,6 @@ ActiveRecord::Schema.define(version: 20170414101108) do
     t.index ["truck_id"], name: "index_notes_on_truck_id", using: :btree
   end
 
-  create_table "poings", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "points", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false

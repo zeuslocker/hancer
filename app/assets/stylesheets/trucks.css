@@ -9,11 +9,16 @@
   color: #0045FA;
 }
 .form-box__select_blue{
+  margin-top: 20px;
   background: #0045FA;
   color: #FFFFFF;
   text-indent: 7px;
+  display: inline-block;
+  margin-left: 0px;
 }
 .form-box__select_white-blue{
+  margin-top: 20px;
+  margin-left: 0px;
   background: #cdf0fe;
   color: #0045FA;
   text-indent: 7px;
