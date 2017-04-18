@@ -33,9 +33,6 @@ class InputValue
         res << concept('input_value/cell/new_client_select', nil,
                       form_object: "trucks[#{truck_index}][clients][#{new_key}]",
                       current_client: client).show
-        res << concept('input_value/cell/new_client_selec', nil,
-                      form_object: "trucks[#{truck_index}][clients][#{new_key}]",
-                      current_client: client).show
         end
         res
       end
