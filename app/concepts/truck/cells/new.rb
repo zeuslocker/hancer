@@ -6,7 +6,7 @@ class Truck
       include ActionView::Helpers::OutputSafetyHelper
 
       def form_driver_options
-        ::Driver.includes(:truck).where(trucks: { driver_id: nil }).collect { |x| [x.full_name, x.id] }
+        ::Driver.includes(:trucks).where(trucks: { driver_id: nil }).collect { |x| [x.full_name, x.id] }
       end
 
       def new_truck_key

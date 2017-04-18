@@ -1,11 +1,9 @@
 class InputValue
   class Index < Trailblazer::Operation
-    step ::TrailblazerHelpers::Steps::InputValue::SetupInputValues
-    step :order_input_values
-    step ::TrailblazerHelpers::Steps::Truck::SetupTrucks
+    step :setup_trucks_with_input_values
     
-    def order_input_values(options, **)
-      options['input_values'].order!(created_at: :desc)
+    def setup_trucks_with_input_values(options, params:, **)
+      options['model'] = ::Truck.left_joins(:input_values).all
     end
   end
 end

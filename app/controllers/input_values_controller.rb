@@ -7,13 +7,16 @@ class InputValuesController < ApplicationController
   end
 
   def update_collection
-    binding.pry
     run InputValue::UpdateCollection do |_result|
       flash[:notice] = I18n.t('driver.create')
       redirect_to(action: :index) && return
     end
     flash[:alert] = AlertsViewHandler.call(result)
     redirect_to controller: 'input_values', action: 'index'
+  end
+
+  def edit_truck_block
+    render_form :edit_truck_block, layout: false
   end
 
   def client_fields_with_inputs
