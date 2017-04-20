@@ -1,0 +1,24 @@
+= fields_for "#{form_object}", truck do |f|
+  .note
+    .row.driver-box__bgtruck
+      .col-sm-3
+        = f.select(:id, options_from_collection_for_select(::Truck::Index.()['trucks'], :id, :number_plate, f.object.id), {},
+                    class: 'form-control form-box__select form-box__select_blue truck_id')
+      .col-sm-2
+        = f.select(:driver_id, options_from_collection_for_select(::Driver::Index.()['drivers'], :id, :full_name, f.object.driver_id), {},
+                    class: 'form-control form-box__select form-box__select_blue driver_id')
+    - clients.each do |client|
+      .row.driver-box__bgtruck_withoutborder
+        .col-sm-3
+          = select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name, (used_clients << client.id).last), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
+        - client.inputs.each_with_index do |input, index|
+          .col-sm-1
+            = text_field_tag("#{form_object}[input_values_attributes][#{index}][value]", f.object.input_values.find_by(input_id: input.id)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{input.name}")
+            - if f.object.input_values.find_by(input_id: input.id)&.id
+              = hidden_field_tag("#{form_object}[input_values_attributes][#{index}][id]", f.object.input_values.find_by(input_id: input.id)&.id)
+            = hidden_field_tag("#{form_object}[input_values_attributes][#{index}][input_id]", input.id)
+    - if ::Client.where.not(id: used_clients).present?
+      .row.driver-box__bgtruck_withoutborder
+        .col-sm-3
+          = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
+    .row.form-control__border_white

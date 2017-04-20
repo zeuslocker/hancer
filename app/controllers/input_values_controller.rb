@@ -16,7 +16,7 @@ class InputValuesController < ApplicationController
   end
 
   def edit_truck_block
-    render_form :edit_truck_block, layout: false
+    render_form :edit_truck_block, result: nil, layout: false
   end
 
   def client_fields_with_inputs

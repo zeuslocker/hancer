@@ -1,5 +1,5 @@
 .note
-  = fields_for "trucks", truck, index: nil do |ff|
+  = f.fields_for "trucks", truck, index: nil do |ff|
     .row.driver-box__bgtruck
       .col-sm-3
         = ff.select(:id, truck_select_pairs, {},

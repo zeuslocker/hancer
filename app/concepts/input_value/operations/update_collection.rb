@@ -1,17 +1,20 @@
 class InputValue
   class UpdateCollection < Trailblazer::Operation
-    step :create_or_update
+    extend ::Trailblazer::Operation::Contract::DSL
 
-    def create_or_update(_options, params:, **)
-      params[:trucks].each do |truck_key, truck_value|
-        truck_value[:input_values]&.each do |input_value|
-          if input_value[:id].start_with?('new')
-            InputValue::Create.call(input_value.merge!(truck_id: truck_value[:id], driver_id: truck_value[:driver_id]))
-          else
-            InputValue::Update.call(input_value.merge!(truck_id: truck_value[:id], driver_id: truck_value[:driver_id]))
-          end
-        end
-      end
+    contract Admin::Contract::AdminForm
+
+    step :setup_model
+    step ::Trailblazer::Operation::Contract::Build()
+    step :validate_collection
+    step ::Trailblazer::Operation::Contract::Persist()
+
+    def validate_collection(options, params:, **)
+      options['contract.default'].validate(params[:reform])
+    end
+
+    def setup_model(options, **)
+      options['model'] = ::Admin.take
     end
   end
 end

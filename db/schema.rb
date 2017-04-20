@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418111437) do
+ActiveRecord::Schema.define(version: 20170419094838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "admins", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clients", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "full_name",                  null: false
@@ -30,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170418111437) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "input_value_trucks", force: :cascade do |t|
+  create_table "input_value_trucks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "input_value_id"
     t.uuid     "truck_id"
     t.datetime "created_at",     null: false
@@ -61,8 +66,8 @@ ActiveRecord::Schema.define(version: 20170418111437) do
     t.string   "number_plate"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.uuid     "driver_id",    null: false
-    t.index ["driver_id"], name: "index_trucks_on_driver_id", using: :btree
+    t.uuid     "driver_id"
+    t.uuid     "admin_id"
   end
 
 end

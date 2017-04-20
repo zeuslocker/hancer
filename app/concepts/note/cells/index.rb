@@ -6,7 +6,7 @@ class Note
       end
 
       def new_client_fields_with_inputs_link
-        link_to nil, client_fields_with_inputs_notes_path, class: 'input_client-inputs-field_link hide'
+        link_to nil, edit_truck_block_input_values_path, class: 'input_client-inputs-field_link hide'
       end
 
       def new_client_select_notes_link

@@ -40,7 +40,7 @@ var OperationForm = {
   activateSaveButton: function (event){
     $('#js-submit-form').removeClass('disabled');
   },
-  submitForm: function (event){debugger;
+  submitForm: function (event){
     $('.disabled_input').prop('disabled', true);
     $('#js-main-form').trigger("submit");
   },

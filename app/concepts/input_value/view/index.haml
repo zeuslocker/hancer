@@ -1,5 +1,33 @@
 = navbar
+= edit_truck_block_link
 .container
-  = form_tag update_collection_input_values_path, id: 'js-main-form', multipart: true do
+  = form_for truck_input_values_form, url: update_collection_input_values_path, method: :post, html: {id: 'js-main-form'} do |f|
     .js-form-start-label
-      = show_truck_blocks
+    = f.fields_for :trucks do |ff|
+      .note
+        .row.driver-box__bgtruck
+          .col-sm-3
+            = ff.select(:id, options_from_collection_for_select(::Truck::Index.()['trucks'], :id, :number_plate, ff.object.id), {},
+                        class: 'form-control form-box__select form-box__select_blue truck_id')
+          .col-sm-2
+            = ff.select(:driver_id, options_from_collection_for_select(::Driver::Index.()['drivers'], :id, :full_name, ff.object.driver_id), {},
+                        class: 'form-control form-box__select form-box__select_blue driver_id')
+
+        = ff.fields_for :input_values do |fff|
+          -binding.pry
+          - if @client&.id != fff.object.model.input.client_id
+            .row.driver-box__bgtruck_withoutborder
+              .col-sm-3
+                = select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name, (used_clients << fff.object.model.input.client_id).last), class: 'form-control form-box__select form-box__select_white-blue js-render-client-fields')
+              .col-sm-1
+                = fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")
+            - @client = fff.object.model.input.client
+          - else
+            .col-sm-1
+              = fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")
+        .row.driver-box__bgtruck_withoutborder
+          = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
+
+        //= slow_select_with_input_values(ff)
+        //= render view: 'client_fields', locals: {ff: ff, index: truck_index}
+        .row.form-control__border_white

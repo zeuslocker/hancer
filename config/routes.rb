@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :input_values, except: [:edit] do
     collection do
       post 'update_collection'
-      get 'new_field'
+      post 'edit_truck_block'
       get 'new_input'
       post 'client_fields_with_inputs'
       post 'new_client_select'
