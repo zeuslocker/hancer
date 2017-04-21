@@ -61,7 +61,10 @@ en:
       input-field:
         placeholder: 'Input'
       fraktnr: 'Fraktnr.'
+      fraktnr_low_case: 'fraktnr'
       points: 'Hentested'
+      points_for_form: 'points'
+      points_blank: 'Velg hentested'
   home:
     bill:
       title: 'Fakturagrunnlag'

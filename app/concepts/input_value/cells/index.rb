@@ -25,9 +25,18 @@ class InputValue
         concept('input_value/cell/navbar', params.fetch(:date, Time.current).to_time.strftime('%Y-%m-%d'))
       end
 
+      def all_clients(ff)
+        @clients ||= Client.joins(:inputs).where(inputs:{id: ff.object.input_values.map(&:input_id)}).uniq
+      end
+
+      def curren_client(ff)
+        ff.object.model.input.client
+      end
+
       def edit_truck_block_link
         link_to nil, edit_truck_block_input_values_path, class: 'input_client-inputs-field_link hidden'
       end
+
       def truck_input_values_form
         @truck_input_values_form ||= model['contract.default']
       end

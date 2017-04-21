@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'order_as_specified'
 gem 'trailblazer'
 gem 'trailblazer-rails'
 gem 'trailblazer-cells'

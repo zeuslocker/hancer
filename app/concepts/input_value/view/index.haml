@@ -12,22 +12,32 @@
           .col-sm-2
             = ff.select(:driver_id, options_from_collection_for_select(::Driver::Index.()['drivers'], :id, :full_name, ff.object.driver_id), {},
                         class: 'form-control form-box__select form-box__select_blue driver_id')
-
         = ff.fields_for :input_values do |fff|
           -binding.pry
-          - if @client&.id != fff.object.model.input.client_id
+          - if !used_clients.include?(fff.object.model.input.client_id)
             .row.driver-box__bgtruck_withoutborder
               .col-sm-3
                 = select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name, (used_clients << fff.object.model.input.client_id).last), class: 'form-control form-box__select form-box__select_white-blue js-render-client-fields')
-              .col-sm-1
-                = fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")
-            - @client = fff.object.model.input.client
+              - if fff.object.model.input.name == I18n.t('client.form.points_for_form')
+                .col-sm-2
+                  = fff.select(:value, options_from_collection_for_select(::Point.all, :id, :name, ::Point.find_by(id: fff.object.model.value)&.id), {}, class: 'driver-box__input driver-box__text driver-box__select_mini')
+              - else
+                .col-sm-1
+                  = fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")
+          - elsif fff.object.model.input.name == I18n.t('client.form.points_for_form')
+            .col-sm-2
+              = fff.select(:value, options_from_collection_for_select(::Point.all, :id, :name, ::Point.find_by(fff.object.model.value)&.id), class: 'driver-box__input driver-box__text driver-box__select_mini')
+            - used_clients << fff.object.model.input.client_id
           - else
-            .col-sm-1
+            .col-sm-1.super-poss
               = fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")
-        .row.driver-box__bgtruck_withoutborder
-          = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
-
-        //= slow_select_with_input_values(ff)
-        //= render view: 'client_fields', locals: {ff: ff, index: truck_index}
+            - used_clients << fff.object.model.input.client_id
+        - if !(::Client.ids - used_clients).empty? || all_clients(ff).empty?
+          .row.driver-box__bgtruck_withoutborder
+            - if used_clients.present?
+              .col-sm-3.select_superpos
+                = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
+            - else
+              .col-sm-3
+                = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
         .row.form-control__border_white

@@ -16,12 +16,16 @@ class InputValue
         @date ||= (params[:date]&.to_time || Time.current)
       end
 
+      def client_identificator
+        ::SecureRandom.hex(10)
+      end
+
       def form_object
         @form_object ||= params[:form_object]
       end
 
       def clients
-        @clients ||= ::Client.where(id: params[:client_ids])
+        @clients ||= ::Client.where(id: params[:client_ids]).order_as_specified(id: params[:client_ids])
       end
 
       def truck

@@ -5,9 +5,14 @@ class Client
       validates :full_name, presence: true
 
       collection :inputs, populator: :populate_inputs do
-        (::Input.attribute_names - [:client_id]).each { |col| property col.to_sym }
-        property :client
+        (::Input.attribute_names - [:client]).each { |col| property col.to_sym }
         validates :name, presence: true
+      end
+
+      def prepopulate!(options)
+        options[:inputs].each do |input_params|
+          self.inputs.append(Input.new(input_params))
+        end
       end
 
       def populate_inputs(fragment:, **)

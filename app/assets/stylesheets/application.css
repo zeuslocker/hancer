@@ -33,7 +33,15 @@ body {
     border: none;
     vertical-align: middle;
 }
-
+.super-poss{
+  position: relative;
+  left: 375px;
+  top: -58px;
+}
+.select_superpos {
+  /*position: relative;
+  left: -204px */
+}
 .driver-box__input {
     /* Rectangle 4: */
     background: #FFFFFF;
@@ -47,6 +55,18 @@ body {
   height: 20px;
   background: #FFFFFF;
 }
+.driver-box__select_mini{
+  display: inline-block;
+  background: #cdf0fe;
+  border: 1px solid #D0EFFF;
+  border-radius: 2px;
+  vertical-align: middle;
+  padding: 7px;
+  height: 37px;
+  margin-left: 0px;
+  margin-top: 20px;
+  width: 100%;
+}
 .driver-box__input_mini {
     /* Rectangle 4: */
     display: inline-block;
@@ -55,6 +75,7 @@ body {
     border-radius: 2px;
     vertical-align: middle;
     padding: 7px;
+    height: 37px;
     margin-left: 0px;
     margin-top: 20px;
     width: 100%;
