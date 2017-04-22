@@ -2,32 +2,30 @@
   .note
     .row.driver-box__bgtruck
       .col-sm-3
-        = f.select(:id, options_from_collection_for_select(::Truck::Index.()['trucks'], :id, :number_plate, f.object.id), {},
-                    class: 'form-control form-box__select form-box__select_blue truck_id')
+        = truck_select_tag(f)
       .col-sm-2
-        = f.select(:driver_id, options_from_collection_for_select(::Driver::Index.()['drivers'], :id, :full_name, f.object.driver_id), {},
-                    class: 'form-control form-box__select form-box__select_blue driver_id')
+        = driver_select_tag(f)
     - clients.each do |client|
       .row.driver-box__bgtruck_withoutborder
         .col-sm-3
-          = select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name, (used_clients << client.id).last), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
+          = client_select_tag(client)
         - client.inputs.each_with_index do |input|
-          - indent = client_identificator
+          - indent = client_identificator # set new client identificator
           - if input.name == I18n.t('client.form.fraktnr_low_case') && client.fraktnr
             .col-sm-1
-              = text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", f.object.input_values.find_by(input_id: input.id)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{input.name}")
+              = fraktnr_text_tag(f, input, indent)
           - elsif input.name == I18n.t('client.form.points_for_form') && client.points
             .col-sm-2
-              = select_tag("#{form_object}[input_values_attributes][#{indent}][value]", options_from_collection_for_select(::Point.all, :id, :name), class: 'driver-box__input driver-box__text driver-box__select_mini', placeholder: "#{input.name}", include_blank: I18n.t('client.form.points_blank'))
+              = points_select_tag(input, indent)
           - elsif (input.name != I18n.t('client.form.fraktnr_low_case')) && (input.name != I18n.t('client.form.points_for_form'))
             .col-sm-1
-              = text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", f.object.input_values.find_by(input_id: input.id)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{input.name}")
-          - if f.object.input_values.find_by(input_id: input.id)&.id
-            .col-sm-1
-              = hidden_field_tag("#{form_object}[input_values_attributes][#{indent}][id]", f.object.input_values.find_by(input_id: input.id)&.id)
-          = hidden_field_tag("#{form_object}[input_values_attributes][#{indent}][input_id]", input.id)
-      - if ::Client.where.not(id: used_clients).present?
-        .row.driver-box__bgtruck_withoutborder
-          .col-sm-3
-            = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
-      .row.form-control__border_white
+              = sipmle_input_value_tag(f, input, indent)
+          - if input_value_exist?(f, input)
+            = input_value_hidden_id_tag(f, input, indent)
+          = input_id_hidden_tag(input, indent)
+      - (used_clients << client.id)
+    - if ::Client.where.not(id: used_clients).present?
+      .row.driver-box__bgtruck_withoutborder
+        .col-sm-3
+          = select_for_new_client_tag
+    .row.form-control__border_white

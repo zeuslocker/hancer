@@ -1,9 +1,0 @@
-<div class="row driver-box__bgtruck_withoutborder">
-  <div class="col-sm-3">
-    <%= select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name, (used_clients << fff.object.model.input.client_id).last), class: 'form-control form-box__select form-box__select_white-blue js-render-client-fields')%>
-  </div>
-  <div class="col-sm-1">
-    <%= fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")%>
-    <% @client = fff.object.model.input.client %>
-  </div>
-</div>

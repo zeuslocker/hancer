@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20170419094838) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "clients_notes", id: false, force: :cascade do |t|
+    t.uuid "client_id"
+    t.uuid "note_id"
+  end
+
   create_table "drivers", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "full_name"
     t.datetime "created_at", null: false
@@ -43,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170419094838) do
   end
 
   create_table "input_values", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "note_id"
     t.uuid     "input_id"
     t.string   "value"
     t.datetime "created_at", null: false
@@ -54,6 +60,13 @@ ActiveRecord::Schema.define(version: 20170419094838) do
     t.uuid     "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "truck_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["truck_id"], name: "index_notes_on_truck_id", using: :btree
   end
 
   create_table "points", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

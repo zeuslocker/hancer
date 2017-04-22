@@ -23,7 +23,7 @@ var OperationClient = {
         });
     },
     AddInputValuesuccessCallback: function(result, target) {
-        $(target).closest('.note').html(result);
+        $($(target).closest('.note')).replaceWith(result);
       /*  var input_fields = $(target.closest('.row')).find('.col-sm-1'); // check if fields exist
         if (input_fields.length > 0) { //if exist add new field and remove old
           input_fields.remove();

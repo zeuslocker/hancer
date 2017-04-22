@@ -2,42 +2,57 @@
 = edit_truck_block_link
 .container
   = form_for truck_input_values_form, url: update_collection_input_values_path, method: :post, html: {id: 'js-main-form'} do |f|
-    .js-form-start-label
     = f.fields_for :trucks do |ff|
       .note
         .row.driver-box__bgtruck
           .col-sm-3
-            = ff.select(:id, options_from_collection_for_select(::Truck::Index.()['trucks'], :id, :number_plate, ff.object.id), {},
-                        class: 'form-control form-box__select form-box__select_blue truck_id')
+            = truck_select_tag(ff)
           .col-sm-2
-            = ff.select(:driver_id, options_from_collection_for_select(::Driver::Index.()['drivers'], :id, :full_name, ff.object.driver_id), {},
-                        class: 'form-control form-box__select form-box__select_blue driver_id')
+            = driver_select_tag(ff)
+        - prev_client = nil
         = ff.fields_for :input_values do |fff|
-          -binding.pry
-          - if !used_clients.include?(fff.object.model.input.client_id)
-            .row.driver-box__bgtruck_withoutborder
-              .col-sm-3
-                = select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name, (used_clients << fff.object.model.input.client_id).last), class: 'form-control form-box__select form-box__select_white-blue js-render-client-fields')
-              - if fff.object.model.input.name == I18n.t('client.form.points_for_form')
-                .col-sm-2
-                  = fff.select(:value, options_from_collection_for_select(::Point.all, :id, :name, ::Point.find_by(id: fff.object.model.value)&.id), {}, class: 'driver-box__input driver-box__text driver-box__select_mini')
-              - else
-                .col-sm-1
-                  = fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")
-          - elsif fff.object.model.input.name == I18n.t('client.form.points_for_form')
-            .col-sm-2
-              = fff.select(:value, options_from_collection_for_select(::Point.all, :id, :name, ::Point.find_by(fff.object.model.value)&.id), class: 'driver-box__input driver-box__text driver-box__select_mini')
-            - used_clients << fff.object.model.input.client_id
-          - else
-            .col-sm-1.super-poss
-              = fff.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: "#{fff.object.model.input.name}")
-            - used_clients << fff.object.model.input.client_id
+          -if(prev_client == nil)
+            ! <div class="row driver-box__bgtruck_withoutborder">
+          - if (prev_client != nil) && (prev_client != current_client(fff).id)
+            ! <div class="row driver-box__bgtruck_withoutborder">
+          -if used_clients.include?(current_client(fff).id)
+            - if its_point_input?(fff)
+              .col-sm-2
+                = points_select_tag(fff)
+            -elsif its_franktnr_input?(fff)
+              .col-sm-1
+                = input_value_tag(fff)
+            - elsif its_simple_input?(fff)
+              .col-sm-1
+                = input_value_tag(fff)
+          -else
+            .col-sm-3
+              = client_select_tag(fff)
+            - if its_point_input?(fff)
+              .col-sm-2
+                = points_select_tag(fff)
+            -elsif its_franktnr_input?(fff)
+              .col-sm-1
+                = input_value_tag(fff)
+            - elsif its_simple_input?(fff)
+              .col-sm-1
+                = input_value_tag(fff)
+          - if (next_input_value(fff, ff)&.model&.input&.client != current_input(fff).client)
+            .col-sm-1.form-box__delete_right
+              = destroy
+            ! </div>
+          - used_clients << current_client(fff).id
+          - prev_client = current_client(fff).id
         - if !(::Client.ids - used_clients).empty? || all_clients(ff).empty?
           .row.driver-box__bgtruck_withoutborder
             - if used_clients.present?
-              .col-sm-3.select_superpos
-                = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
+              .col-sm-3
+                = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields', include_blank: I18n.t('client.form.clients_blank'))
             - else
               .col-sm-3
-                = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields')
-        .row.form-control__border_white
+                = select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-mr js-render-client-fields', include_blank: I18n.t('client.form.clients_blank'))
+          .row.form-control__border_white
+        - else
+          .row.form-control__border_white
+        - used_clients.clear
+        - prev_client = nil

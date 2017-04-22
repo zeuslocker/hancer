@@ -65,6 +65,7 @@ en:
       points: 'Hentested'
       points_for_form: 'points'
       points_blank: 'Velg hentested'
+      clients_blank: 'Velg kunde'
   home:
     bill:
       title: 'Fakturagrunnlag'

@@ -12,7 +12,7 @@ class Client
       end
 
       def new_input_field_link
-        link_to nil, new_input_clients_path, class: 'input_field_link hide'
+        link_to nil, new_input_clients_path, class: 'input_field_link'
       end
     end
   end

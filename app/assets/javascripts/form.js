@@ -12,4 +12,8 @@ $(function () {
   $(document).on('click', '#js-submit-form', function(event) {OperationForm.submitForm(event)});
 
   $(document).on('click', '.js-delete-model', function(event) {OperationForm.deleteModel(event)});
+
+  $(document).on('change', '.date-picker', function(event) {OperationForm.changeDate(event)});
+
+  $(document).on('click', '.js-delete-model-row', function(event) {OperationForm.changeDate(event)});
 });

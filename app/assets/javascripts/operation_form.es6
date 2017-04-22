@@ -15,6 +15,17 @@ var OperationForm = {
       }
     });
   },
+  deleteModelsRow: function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    OperationForm._destroyElementSwall(event.target.closest('a'), OperationForm._destroyRowCallback);
+  },
+  _destroyRowCallback: function (result, element) {
+    debugger;
+  },
+  changeDate: function(event){
+    window.location.replace(`http://localhost:3000/input_values?date=${event.target.value}`);
+  },
   appendField: function(result, target){
     $(result).insertBefore(target.closest('button'))
   },
@@ -47,7 +58,31 @@ var OperationForm = {
   deleteModel: function (event) {
     event.preventDefault();
     event.stopPropagation();
-    OperationForm._destroyElementSwall(event.target.closest('a'), OperationForm._destroySucessCallback);
+    debugger;
+    input_values_ids = []
+    input_values_ids = $(event.target.closest('.driver-box__bgtruck_withoutborder')).
+      find('input[type=hidden]').map(
+      function(index, input) {
+        return input.value;
+      });
+    event.target.closest('.driver-box__bgtruck_withoutborder')
+    swal({
+      title: I18n.t('helpers.links.confirm'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('helpers.links.yes_destroy'),
+      text: "You will not be able to recover this record!",
+      closeOnConfirm: true
+    }, function () {
+      $.ajax({
+        type: 'DELETE',
+        dataType: "json",
+        url: event.target.href,
+        data: input_values_ids,
+        success: (result) => { successCallback(result, $buttonDelete) }
+      });
+    });
   },
   _destroySucessCallback: function (result, element) {
     element.closest('.driver-box__bgtruck').remove(); // eslint-disable-line  no-undef
