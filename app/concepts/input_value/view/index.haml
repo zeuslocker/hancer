@@ -38,6 +38,7 @@
               .col-sm-1
                 = input_value_tag(fff)
           - if (next_input_value(fff, ff)&.model&.input&.client != current_input(fff).client)
+            = komment_field_tag(fff, current_client(fff), ff.object.model)
             .col-sm-1.form-box__delete_right
               = destroy
             ! </div>

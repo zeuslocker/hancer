@@ -50,12 +50,36 @@ class InputValue
         f.object.model.input
       end
 
+      def find_komment_value(client, truck)
+        InputValue.joins(:trucks,input: :client).find_by(
+                                                        trucks: {id: truck.id},
+                                                        inputs: {name: I18n.t('input_value.kommentar'),
+                                                                'clients' => {id: client.id, updated_at: date.midnight..date.end_of_day}})
+      end
+
       # HTML Helpers
       def input_value_tag(f)
         res = f.text_field(:value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: current_input(f).name.to_s)
         res << f.hidden_field(:input_id)
         res << f.hidden_field(:id) if f.object.model.id
         res
+      end
+
+      def komment_field_tag(f, client, truck)
+        input = client.inputs.find_by(name: 'kommentar')
+        ident = client_identificator
+        input_value = find_komment_value(client, truck)
+        col_size = 9 - client.inputs.length - 1
+        col_size +=1 unless client.fraktnr
+        client.points ? col_size -=1 : col_size +=1
+
+        content_tag :div, class: "col-sm-#{col_size}" do
+          res = ''
+          res << text_field_tag("#{f.object_name[0,f.object_name.rindex('[')]}[#{ident}][value]", input_value&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+          res << hidden_field_tag("#{f.object_name[0,f.object_name.rindex('[')]}[#{ident}][input_id]", input.id)
+          res << hidden_field_tag("#{f.object_name[0,f.object_name.rindex('[')]}[#{ident}][id]", input_value.id) if input_value
+          res.html_safe
+        end.html_safe
       end
 
       def points_select_tag(f)
@@ -73,7 +97,7 @@ class InputValue
 
       def truck_select_tag(f)
         f.select(:id,
-                 options_from_collection_for_select(::Truck::Index.call['trucks'], :id, :number_plate, f.object.id),
+                options_for_select([[f.object.number_plate, f.object.id]]),
                  {},
                  class: 'form-control form-box__select form-box__select_blue truck_id')
       end

@@ -1,10 +1,10 @@
-class InputValue
-  class Cell
+class Bill
+  module Cell
     class Navbar < Trailblazer::Cell
       include ActionView::Helpers::DateHelper
 
-      def navbar
-        concept('bill/cell/navbar', params.fetch(:date, Time.current).to_time.strftime('%Y-%m-%d'))
+      def all_month
+        ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       end
     end
   end

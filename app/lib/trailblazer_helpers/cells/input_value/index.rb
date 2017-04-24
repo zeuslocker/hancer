@@ -17,6 +17,10 @@ module TrailblazerHelpers
       def destroy
         link_to(image_tag('delete_row.png'), destroy_collection_input_values_path, class: 'js-delete-model-row')
       end
+
+      def client_identificator
+        ::SecureRandom.hex(10)
+      end
       
       def its_simple_input?(f)
         (current_input(f).name != I18n.t('client.form.points_for_form') &&

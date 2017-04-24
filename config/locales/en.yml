@@ -68,6 +68,7 @@ en:
       clients_blank: 'Velg kunde'
   input_value:
     collection_destroy: 'Records successfully removed!'
+    kommentar: 'kommentar'
   home:
     bill:
       title: 'Fakturagrunnlag'

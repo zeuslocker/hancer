@@ -18,7 +18,7 @@ class Admin
                 result << (input_value&.model || ::InputValue.new(input_id: input.id))
               elsif input.name == I18n.t('client.form.points_for_form') && input.client.points
                 result << (input_value&.model || ::InputValue.new(input_id: input.id))
-              elsif (input.name != I18n.t('client.form.points_for_form')) && (input.name != I18n.t('client.form.fraktnr_low_case'))
+              elsif (input.name != I18n.t('client.form.points_for_form')) && (input.name != I18n.t('client.form.fraktnr_low_case')) && (input.name != I18n.t('input_value.kommentar'))
                 result << (input_value&.model || ::InputValue.new(input_id: input.id))
               end
             end

@@ -15,10 +15,6 @@ class InputValue
         super
       end
 
-      def client_identificator
-        ::SecureRandom.hex(10)
-      end
-
       def form_object
         @form_object ||= params[:form_object]
       end
@@ -32,9 +28,24 @@ class InputValue
       end
 
       def input_value_exist?(f, input)
-        f.object.input_values.find_by(input_id: input.id)
+        f.object.input_values.find_by(input_id: input.id, updated_at: date.midnight..date.end_of_day)
+        InputValue.joins(:trucks,input: :client).find_by(
+                                                        trucks: {id: truck.id},
+                                                        inputs: {name: I18n.t('input_value.kommentar'),
+                                                                'clients' => {id: input.client.id, updated_at: date.midnight..date.end_of_day}})
       end
       # HTML Helpers
+
+      def komment_field_tag(f, client, indent)
+        input = client.inputs.find_by(name: 'kommentar')
+        col_size = 9 - client.inputs.length
+        col_size +=1 unless client.fraktnr
+        client.points ? col_size -=1 : col_size +=1
+        content_tag :div, class: "col-sm-#{col_size}" do
+          text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value_exist?(f, input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)+
+          input_id_hidden_tag(input, indent)
+        end
+      end
 
       def remove_new_row
         link_to(image_tag('delete_row.png'), nil, class: 'js-delete-new-row')
