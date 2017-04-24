@@ -11,6 +11,7 @@ class InputValue
 
       def show
         @used_clients = []
+        @new_row = true
         super
       end
 
@@ -34,6 +35,10 @@ class InputValue
         f.object.input_values.find_by(input_id: input.id)
       end
       # HTML Helpers
+
+      def remove_new_row
+        link_to(image_tag('delete_row.png'), nil, class: 'js-delete-new-row')
+      end
 
       def truck_select_tag(f)
         f.select(:id,

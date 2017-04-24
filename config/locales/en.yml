@@ -66,6 +66,8 @@ en:
       points_for_form: 'points'
       points_blank: 'Velg hentested'
       clients_blank: 'Velg kunde'
+  input_value:
+    collection_destroy: 'Records successfully removed!'
   home:
     bill:
       title: 'Fakturagrunnlag'

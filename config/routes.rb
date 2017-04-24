@@ -34,9 +34,9 @@ Rails.application.routes.draw do
     collection do
       post 'update_collection'
       post 'edit_truck_block'
-      get 'new_input'
-      post 'client_fields_with_inputs'
-      post 'new_client_select'
+      delete 'destroy_collection'
     end
   end
+
+  resources :bills, only: [:index]
 end

@@ -12,10 +12,6 @@ class InputValue
         super
       end
 
-      def destroy
-        link_to(image_tag('delete_row.png'), client_path(model), class: 'js-delete-model')
-      end
-
       def truck_select_pairs
         options_from_collection_for_select(::Truck.all, :id, :number_plate)
       end

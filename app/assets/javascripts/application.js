@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require sweet-alert
-//=require alerts
+//= require alerts
 //= require sweet-alert-confirm
 //= require i18n.js
 //= require i18n/translations

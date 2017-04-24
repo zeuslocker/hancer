@@ -21,8 +21,16 @@
             .col-sm-1
               = sipmle_input_value_tag(f, input, indent)
           - if input_value_exist?(f, input)
+            - @new_row = false
             = input_value_hidden_id_tag(f, input, indent)
           = input_id_hidden_tag(input, indent)
+        - if @new_row
+          .col-sm-1.form-box__delete_right
+            = remove_new_row
+        - else
+          .col-sm-1.form-box__delete_right
+            = destroy
+      - @new_row = true
       - (used_clients << client.id)
     - if ::Client.where.not(id: used_clients).present?
       .row.driver-box__bgtruck_withoutborder

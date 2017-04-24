@@ -19,22 +19,8 @@ class InputValuesController < ApplicationController
     render_form :edit_truck_block, result: nil, layout: false
   end
 
-  def client_fields_with_inputs
-    run InputValue::ClientFieldsWithInputs
-    render_form :client_fields_with_inputs, result: result, layout: false
-  end
-
-  def new_client_select
-    render_form :new_client_select, layout: false
-  end
-
-  def new_field
-    #  run Note::New
-    #  render_form :new, result: result, layout: false
-  end
-
-  def destroy
-    #  run Note::Destroy
-    #  render json: { notice: I18n.t('driver.destroy') }
+  def destroy_collection
+    run InputValue::DestroyCollection
+    render json: {notice: I18n.t('input_value.collection_destroy')}
   end
 end

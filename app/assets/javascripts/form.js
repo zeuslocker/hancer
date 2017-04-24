@@ -15,5 +15,7 @@ $(function () {
 
   $(document).on('change', '.date-picker', function(event) {OperationForm.changeDate(event)});
 
-  $(document).on('click', '.js-delete-model-row', function(event) {OperationForm.changeDate(event)});
+  $(document).on('click', '.js-delete-model-row', function(event) {OperationForm.deleteModelsRow(event)});
+
+  $(document).on('click', '.js-delete-new-row', function(event) {OperationForm.deleteNewRow(event)});
 });

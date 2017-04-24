@@ -36,3 +36,7 @@
   border: none;
   vertical-align: middle;
 }
+.client_select_pos{
+  margin-left: 10px;
+  margin-top: -1px;
+}

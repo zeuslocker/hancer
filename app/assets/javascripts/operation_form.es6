@@ -1,3 +1,4 @@
+
 var OperationForm = {
   removeInputField: function(event){
     $(event.target.closest(".driver-box__input-wrapper")).remove();
@@ -15,13 +16,54 @@ var OperationForm = {
       }
     });
   },
+  deleteNewRow: function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    swal({
+      title: I18n.t('helpers.links.confirm'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('helpers.links.yes_destroy'),
+      text: "You will not be able to recover this record!",
+      closeOnConfirm: true
+    }, function () {
+      OperationForm._destroyRowCallback({notice: 'Unsaved fields successfully removed!'}, event);
+    });
+  },
   deleteModelsRow: function(event){
     event.preventDefault();
     event.stopPropagation();
-    OperationForm._destroyElementSwall(event.target.closest('a'), OperationForm._destroyRowCallback);
+    var input_values_ids = $(event.target.closest('.driver-box__bgtruck_withoutborder')).
+      find('input[type=hidden]').filter(OperationForm.isIdInput).map(
+      function(index, input) {
+        return input.value;
+      });
+    swal({
+      title: I18n.t('helpers.links.confirm'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('helpers.links.yes_destroy'),
+      text: "You will not be able to recover this record!",
+      closeOnConfirm: true
+    }, function () {
+      $.ajax({
+        type: 'DELETE',
+        dataType: "json",
+        url: event.target.closest('a').href,
+        data: {input_values_ids: Array.from(input_values_ids)},
+        success: (result) => { OperationForm._destroyRowCallback(result, event) }
+      });
+    });
   },
-  _destroyRowCallback: function (result, element) {
-    debugger;
+  _destroyRowCallback: function (result, event) {
+    event.target.closest('.driver-box__bgtruck_withoutborder').remove();
+    if(result['notice'] != undefined){
+    toastr.success(result['notice']);
+    }else{
+    toastr.error(result['alert']);
+    }
   },
   changeDate: function(event){
     window.location.replace(`http://localhost:3000/input_values?date=${event.target.value}`);
@@ -58,31 +100,13 @@ var OperationForm = {
   deleteModel: function (event) {
     event.preventDefault();
     event.stopPropagation();
-    debugger;
-    input_values_ids = []
-    input_values_ids = $(event.target.closest('.driver-box__bgtruck_withoutborder')).
-      find('input[type=hidden]').map(
-      function(index, input) {
-        return input.value;
-      });
-    event.target.closest('.driver-box__bgtruck_withoutborder')
-    swal({
-      title: I18n.t('helpers.links.confirm'),
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
-      confirmButtonText: I18n.t('helpers.links.yes_destroy'),
-      text: "You will not be able to recover this record!",
-      closeOnConfirm: true
-    }, function () {
-      $.ajax({
-        type: 'DELETE',
-        dataType: "json",
-        url: event.target.href,
-        data: input_values_ids,
-        success: (result) => { successCallback(result, $buttonDelete) }
-      });
-    });
+    OperationForm._destroyElementSwall(event.target.closest('a'), OperationForm._destroySucessCallback);
+  },
+  successRowDelete: function (result, event) {
+    element.target.closest('row').remove();
+  },
+  isIdInput: function (index, value) {
+    return value.name.endsWith('[id]');
   },
   _destroySucessCallback: function (result, element) {
     element.closest('.driver-box__bgtruck').remove(); // eslint-disable-line  no-undef
