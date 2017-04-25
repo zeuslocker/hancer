@@ -5,7 +5,7 @@ class Bill
         concept('bill/cell/navbar', model['date'].strftime('%Y-%m-%d'))
       end
       def show_bills
-        concept('bill/cell/show', collection: model['clients'], params: params)
+        concept('bill/cell/show', collection: model['clients'], params: params, date: model['date'])
       end
     end
   end

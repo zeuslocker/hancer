@@ -69,6 +69,9 @@ en:
   input_value:
     collection_destroy: 'Records successfully removed!'
     kommentar: 'kommentar'
+  bill:
+    date: 'Dato'
+    number_plate: 'Skiltnummer'
   home:
     bill:
       title: 'Fakturagrunnlag'

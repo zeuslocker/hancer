@@ -50,11 +50,11 @@ class InputValue
         f.object.model.input
       end
 
-      def find_komment_value(client, truck)
-        InputValue.joins(:trucks,input: :client).find_by(
+      def find_komment_value(input, truck)
+        InputValue.joins(:trucks,input: :client).find_by(updated_at: date.midnight..date.end_of_day,
                                                         trucks: {id: truck.id},
                                                         inputs: {name: I18n.t('input_value.kommentar'),
-                                                                'clients' => {id: client.id, updated_at: date.midnight..date.end_of_day}})
+                                                                'clients' => {id: input.client.id}})
       end
 
       # HTML Helpers
@@ -68,7 +68,7 @@ class InputValue
       def komment_field_tag(f, client, truck)
         input = client.inputs.find_by(name: 'kommentar')
         ident = client_identificator
-        input_value = find_komment_value(client, truck)
+        input_value = find_komment_value(input, truck)
         col_size = 9 - client.inputs.length - 1
         col_size +=1 unless client.fraktnr
         client.points ? col_size -=1 : col_size +=1

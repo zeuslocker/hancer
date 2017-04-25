@@ -8,7 +8,7 @@ class Bill
     end
 
     def setup_models(options, date:, **)
-      options['clients'] = ::Client.joins(inputs: :input_values).where(inputs: {input_values: {updated_at: date.beginning_of_month..date.end_of_month}})
+      options['clients'] = ::Client.joins(inputs: :input_values).where(inputs: {input_values: {updated_at: date.beginning_of_month..date.end_of_month}}).uniq
     end
   end
 end
