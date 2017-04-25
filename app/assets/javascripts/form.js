@@ -18,4 +18,6 @@ $(function () {
   $(document).on('click', '.js-delete-model-row', function(event) {OperationForm.deleteModelsRow(event)});
 
   $(document).on('click', '.js-delete-new-row', function(event) {OperationForm.deleteNewRow(event)});
+
+    $(document).on('change', '.date-picker-bill', function(event) {OperationForm.changeDateBill(event)});
 });

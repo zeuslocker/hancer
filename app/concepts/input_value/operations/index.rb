@@ -6,7 +6,12 @@ class InputValue
     contract ::Admin::Contract::AdminForm
 
     step :setup_model
+    step :setup_date
     step ::Trailblazer::Operation::Contract::Build()
+
+    def setup_date(options, params:, **)
+      options['model_date'] = params.fetch(:date, Time.current).to_time
+    end
 
     def setup_model(options, **)
       options['model'] = ::Admin.take

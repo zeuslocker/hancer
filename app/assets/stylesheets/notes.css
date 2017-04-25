@@ -6,6 +6,14 @@
   position: relative;
   top: -3px;
 }
+.date-picker-bill{
+  color: #FFFFFF;
+  background: #0045FA;
+  border: none;
+  line-height: 10px !important;
+  position: relative;
+  top: -3px;
+}
 .note{
   margin-bottom: 20px;
   background: #FFFFFF;

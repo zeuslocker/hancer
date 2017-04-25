@@ -28,11 +28,7 @@ class InputValue
       end
 
       def input_value_exist?(f, input)
-        f.object.input_values.find_by(input_id: input.id, updated_at: date.midnight..date.end_of_day)
-        InputValue.joins(:trucks,input: :client).find_by(
-                                                        trucks: {id: truck.id},
-                                                        inputs: {name: I18n.t('input_value.kommentar'),
-                                                                'clients' => {id: input.client.id, updated_at: date.midnight..date.end_of_day}})
+        f.object.input_values.find_by(input_id: input.id, date: date.midnight..date.end_of_day)
       end
       # HTML Helpers
 
@@ -80,6 +76,10 @@ class InputValue
 
       def sipmle_input_value_tag(f, input, indent)
         text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value_exist?(f, input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+      end
+
+      def date_hidden_tag(indent)
+        hidden_field_tag("#{form_object}[input_values_attributes][#{indent}][date]", params[:date])
       end
 
       def input_value_hidden_id_tag(f, input, indent)

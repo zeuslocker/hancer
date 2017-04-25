@@ -3,6 +3,11 @@ class Bill
     class Show < Trailblazer::Cell
       attr_accessor :total_sums
 
+      def show
+        @total_sums = nil
+        super
+      end
+
       def client_inputs
         return @inputs if @inputs
         inputs = model.inputs
@@ -11,20 +16,23 @@ class Bill
         @inputs ||= inputs
       end
 
+      def client_simlpe_inputs
+        client_inputs.where.not(name: [I18n.t('client.form.fraktnr_low_case'), I18n.t('client.form.points_for_form'), I18n.t('input_value.kommentar')])
+      end
+
       def sums
         @total_sums
       end
 
       def input_values_for_each_truck
-        @total_sums = Array.new(client_inputs.length - row_franktnt_points_inputs_length + 1, 0)
         res = [].tap do |result|
           (date_beginning_of_month..date_end_of_month).each do |date|
-            input_values = input_values_for_day(date)
-            next if input_values.empty?
-            Truck.joins(:input_values).where(input_values: {id: input_values.ids}).uniq.each do |truck|
-              truck_input_values = truck.input_values.where(id: input_values.ids)
+            today_input_values = input_values_for_day(date)
+            next if today_input_values.empty?
+            Truck.joins(:input_values).where(input_values: {id: today_input_values.ids}).uniq.each do |truck|
+              truck_input_values = truck.input_values.where(id: today_input_values.ids)
               client = truck_input_values.first.input.client
-              result << input_values.first.created_at.strftime('%d.%B')
+              result << truck_input_values.first.created_at.strftime('%d.%B')
               result << truck.number_plate
               if client.fraktnr
                 result << truck_input_values.joins(:input).where(inputs: {name: I18n.t('client.form.fraktnr_low_case')})&.first&.value
@@ -34,6 +42,7 @@ class Bill
                 result << Point.find_by(id: point_id)&.name
               end
               simpleinputs = simple_inputs_for_truck(truck_input_values)
+              @total_sums = Array.new(client_simlpe_inputs.length, 0) unless @total_sums
               @total_sums = [total_sums, simpleinputs.map(&:to_f)].transpose.map {|x| x.reduce(:+)}
               result << simpleinputs
               result << truck_input_values.joins(:input).where(inputs: {name: I18n.t('input_value.kommentar')})&.first&.value
@@ -44,18 +53,22 @@ class Bill
       end
 
       def simple_inputs_for_truck(truck_input_values)
-        truck_input_values.joins(:input).where.not(inputs: {name: [I18n.t('client.form.fraktnr_low_case'), I18n.t('client.form.points_for_form'), I18n.t('input_value.kommentar')]}).map(&:value)
+        res = []
+        client_simlpe_inputs.each do |input|
+          res << input.input_values.find_by(id: truck_input_values.ids)&.value
+        end
+        # truck_input_values.joins(:input).where.not(inputs: {name: [I18n.t('client.form.fraktnr_low_case'), I18n.t('client.form.points_for_form'), I18n.t('input_value.kommentar')]}).map(&:value)
+        res
       end
 
       def input_values_for_day(date)
-        InputValue.joins(:input).where(created_at: date.beginning_of_day..date.end_of_day, inputs: {client_id: model.id})
+        InputValue.joins(:input).where(date: date.beginning_of_day..date.end_of_day, inputs: {client_id: model.id})
       end
 
       def trucks
         trucks ||= Truck.joins(input_values: :input).where(input_values: {
                                                                 input: {
-                                                                        client_id: model.id,
-                                                                        updated_at: current_month} })
+                                                                        client_id: model.id}, date: current_month})
       end
 
       def date_beginning_of_month
@@ -71,9 +84,10 @@ class Bill
       end
 
       def row_franktnt_points_inputs_length
-          res = 2
-          res += 1 if model.fraktnr
-          res += 1 if model.points
+        res = 2
+        res += 1 if model.fraktnr
+        res += 1 if model.points
+        res
       end
     end
   end

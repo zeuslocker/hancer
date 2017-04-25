@@ -51,7 +51,7 @@ class InputValue
       end
 
       def find_komment_value(input, truck)
-        InputValue.joins(:trucks,input: :client).find_by(updated_at: date.midnight..date.end_of_day,
+        InputValue.joins(:trucks,input: :client).find_by(date: date.midnight..date.end_of_day,
                                                         trucks: {id: truck.id},
                                                         inputs: {name: I18n.t('input_value.kommentar'),
                                                                 'clients' => {id: input.client.id}})
@@ -100,6 +100,10 @@ class InputValue
                 options_for_select([[f.object.number_plate, f.object.id]]),
                  {},
                  class: 'form-control form-box__select form-box__select_blue truck_id')
+      end
+
+      def date_hidden_tag(f)
+        f.hidden_field(:date, value: (model['model_date']).to_s)
       end
 
       def client_select_tag(f)

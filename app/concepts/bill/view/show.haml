@@ -33,7 +33,7 @@
       .tr
         - row_franktnt_points_inputs_length.times do
           %td
-        - sums.each do |sum|
+        - sums&.each do |sum|
           %td
             %b
               = sum

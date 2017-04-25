@@ -2,6 +2,7 @@
 = edit_truck_block_link
 .container
   = form_for truck_input_values_form, url: update_collection_input_values_path, method: :post, html: {id: 'js-main-form'} do |f|
+    = date_hidden_tag(f)
     = f.fields_for :trucks do |ff|
       .note
         .row.driver-box__bgtruck
@@ -11,6 +12,7 @@
             = driver_select_tag(ff)
         - prev_client = nil
         = ff.fields_for :input_values do |fff|
+          = date_hidden_tag(fff)
           -if(prev_client == nil)
             ! <div class="row driver-box__bgtruck_withoutborder">
           - if (prev_client != nil) && (prev_client != current_client(fff).id)

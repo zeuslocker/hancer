@@ -68,6 +68,9 @@ var OperationForm = {
   changeDate: function(event){
     window.location.replace('http://'+window.location.host + '/input_values?date=' + event.target.value);
   },
+  changeDateBill: function(event){
+    window.location.replace('http://'+window.location.host + '/bills?date=' + event.target.value);
+  },
   appendField: function(result, target){
     $(result).insertBefore(target.closest('button'))
   },

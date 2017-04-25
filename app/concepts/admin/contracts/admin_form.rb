@@ -7,7 +7,7 @@ class Admin
           result = []
           Client.joins(inputs: :input_values).where(
             inputs: {
-              input_values: { updated_at: options[:date].midnight..options[:date].end_of_day, id:
+              input_values: { date: options[:date].midnight..options[:date].end_of_day, id:
                             input_values.map(&:model)
                                               .map(&:id) }
             }
@@ -32,14 +32,14 @@ class Admin
         validates :id, :driver_id, presence: true
 
         collection :input_values, populator: :populate_input_values do
-          properties :value, :input_id
+          properties :value, :input_id, :date
           validates :value, :input_id, presence: true
         end
 
         def populate_input_values(fragment:, **)
           return skip! if !fragment[:value] || fragment[:value].empty?
           item = fragment[:id] && input_values.find_by(id: fragment[:id])
-          item || input_values.append(InputValue.new)
+          item || input_values.append(InputValue.new(date: fragment[:date].to_time))
         end
       end
 
