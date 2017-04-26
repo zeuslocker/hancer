@@ -1,0 +1,38 @@
+= stylesheet_link_tag "application",params[:controller], :media => "all"
+= javascript_include_tag "application", params[:controller], :media => "all"
+%table.table
+  %thead
+    %tr
+      %td
+        %b
+          = I18n.t('bill.date')
+      %td
+        %b
+          = I18n.t('bill.number_plate')
+      - client_inputs.where.not(name: I18n.t('input_value.kommentar')).each do |input|
+        %td
+          %b
+            = input.name
+      %td
+        %b
+          = I18n.t('input_value.kommentar')
+  %tbody
+    - input_values_for_each_truck.each_with_index do |input_value, index|
+      - if (index % (client_inputs.length + 2)) == 0
+        ! <tr>
+        %td
+          = input_value
+      - elsif (index % (client_inputs.length + 2)) == client_inputs.length + 1
+        %td
+          = input_value
+        ! </tr>
+      - else
+        %td
+          = input_value
+    .tr
+      - row_franktnt_points_inputs_length.times do
+        %td
+      - sums&.each do |sum|
+        %td
+          %b
+            = sum

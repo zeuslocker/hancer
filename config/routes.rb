@@ -38,5 +38,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bills, only: [:index]
+  resources :bills, only: [:index] do
+    collection do
+      get 'bill_pdf'
+    end
+  end
 end

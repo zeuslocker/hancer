@@ -6,6 +6,7 @@ class Client
 
       collection :inputs, populator: :populate_inputs do
         (::Input.attribute_names - [:client]).each { |col| property col.to_sym }
+        property :_destroy, virtual: true
         validates :name, presence: true
       end
 
@@ -17,7 +18,18 @@ class Client
 
       def populate_inputs(fragment:, **)
         item = inputs.find { |input| input.id == fragment[:id] && !input.id.nil? }
+        return destroy_input(item) if destroy?(fragment, item)
         item ? item : inputs.append(Input.new)
+      end
+
+      private
+
+      def destroy_input(item)
+        ::Input.destroy(item.id) && inputs.delete(item)
+      end
+
+      def destroy?(fragment, item)
+        fragment['_destroy'] == '1' && item
       end
     end
   end

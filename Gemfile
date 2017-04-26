@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'prawn'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 gem 'order_as_specified'
 gem 'trailblazer'
 gem 'trailblazer-rails'

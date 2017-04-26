@@ -9,6 +9,8 @@ $(function () {
 
   $(document).on('input', 'form :input', function(event) {OperationForm.activateSaveButton(event)});
 
+  $(document).on('input', '.checkbox-circle', function(event) {OperationForm.activateSaveButton(event)});
+
   $(document).on('click', '#js-submit-form', function(event) {OperationForm.submitForm(event)});
 
   $(document).on('click', '.js-delete-model', function(event) {OperationForm.deleteModel(event)});

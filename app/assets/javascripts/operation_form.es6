@@ -1,7 +1,13 @@
 
 var OperationForm = {
   removeInputField: function(event){
-    $(event.target.closest(".driver-box__input-wrapper")).remove();
+    $(event.target.closest(".driver-box__input-wrapper")).hide();
+    var x = $($(event.target.closest(".driver-box__input-wrapper")).find('input')[0]).clone();
+    var base_name = x.attr('name').substr(0, x.attr('name').lastIndexOf('[')-1);
+    x.attr('name', base_name+"[_destroy]");
+    x.attr('value', 1);
+    $(event.target.closest(".driver-box__input-wrapper")).append(x);
+    OperationForm.activateSaveButton();
   },
   addNewInputField: function(event){
     event.preventDefault();
