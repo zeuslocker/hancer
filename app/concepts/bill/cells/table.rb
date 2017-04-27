@@ -33,7 +33,7 @@ class Bill
             Truck.joins(:input_values).where(input_values: {id: today_input_values.ids}).uniq.each do |truck|
               truck_input_values = truck.input_values.where(id: today_input_values.ids)
               client = truck_input_values.first.input.client
-              result << truck_input_values.first.created_at.strftime('%d.%B')
+              result << truck_input_values.first.date.strftime('%d.%B')
               result << truck.number_plate
               if client.fraktnr
                 result << truck_input_values.joins(:input).where(inputs: {name: I18n.t('client.form.fraktnr_low_case')})&.first&.value
@@ -63,7 +63,7 @@ class Bill
       end
 
       def input_values_for_day(date)
-        InputValue.joins(:input).where(date: date.beginning_of_day..date.end_of_day, inputs: {client_id: model.id})
+        InputValue.joins(:input).where(date: date.beginning_of_day..date.end_of_day, inputs: {client_id: model.id}).uniq
       end
 
       def trucks

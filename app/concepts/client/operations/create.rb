@@ -7,7 +7,7 @@ class Client
     step ::Trailblazer::Operation::Contract::Persist()
 
     def form_prepopulate(options, **)
-      options['contract.default'].prepopulate!(inputs: [{name: 'fraktnr'}, {name: 'points'}, {name: 'kommentar'}])
+      options['contract.default'].prepopulate!(inputs: [{name: 'kommentar'}, {name: 'points'}, {name: 'fraktnr'}])
     end
   end
 end

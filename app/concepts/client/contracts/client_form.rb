@@ -12,7 +12,7 @@ class Client
 
       def prepopulate!(options)
         options[:inputs].each do |input_params|
-          self.inputs.append(Input.new(input_params))
+          self.inputs.insert(0, Input.new(input_params))
         end
       end
       def populate_inputs(fragment:, **)

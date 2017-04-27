@@ -13,7 +13,7 @@ class Admin
             }
           ).uniq.order(:updated_at).each do |client|
             client.inputs.each do |input|
-              input_value = input_values.find { |x| x.input_id == input.id }
+              input_value = input_values.find { |x| x.input_id == input.id && x.date >= options[:date].midnight && x.date <= options[:date].end_of_day }
               if input.name == I18n.t('client.form.fraktnr_low_case') && input.client.fraktnr
                 result << (input_value&.model || ::InputValue.new(input_id: input.id))
               elsif input.name == I18n.t('client.form.points_for_form') && input.client.points

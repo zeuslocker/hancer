@@ -12,33 +12,39 @@
             = driver_select_tag(ff)
         - prev_client = nil
         = ff.fields_for :input_values do |fff|
-          = date_hidden_tag(fff)
           - if (prev_client != current_client(fff).id)
             ! <div class="row driver-box__bgtruck_withoutborder">
           -if used_clients.include?(current_client(fff).id)
             - if its_point_input?(fff)
               .col-sm-2
+                = date_hidden_tag(fff)
                 = points_select_tag(fff)
             -elsif its_franktnr_input?(fff)
               .col-sm-1
+                = date_hidden_tag(fff)
                 = input_value_tag(fff)
             - elsif its_simple_input?(fff)
               .col-sm-1
+                = date_hidden_tag(fff)
                 = input_value_tag(fff)
           -else
             .col-sm-3
               = client_select_tag(fff)
             - if its_point_input?(fff)
               .col-sm-2
+                = date_hidden_tag(fff)
                 = points_select_tag(fff)
             -elsif its_franktnr_input?(fff)
               .col-sm-1
+                = date_hidden_tag(fff)
                 = input_value_tag(fff)
             - elsif its_simple_input?(fff)
               .col-sm-1
+                = date_hidden_tag(fff)
                 = input_value_tag(fff)
           - if (next_input_value(fff, ff)&.model&.input&.client != current_input(fff).client)
             = komment_field_tag(fff, current_client(fff), ff.object.model)
+            = date_hidden_tag(fff)
             .col-sm-1.form-box__delete_right
               = destroy
             ! </div>
