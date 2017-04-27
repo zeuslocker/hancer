@@ -9,32 +9,22 @@
       .row.driver-box__bgtruck_withoutborder
         .col-sm-3
           = client_select_tag(client)
-        - client.inputs.where.not(name: 'kommentar').each_with_index do |input|
-          - indent = client_identificator # set new client identificator
-          = date_hidden_tag(indent)
-          - if input.name == I18n.t('client.form.fraktnr_low_case') && client.fraktnr
-            .col-sm-1
-              = fraktnr_text_tag(f, input, indent)
-          - elsif input.name == I18n.t('client.form.points_for_form') && client.points
-            .col-sm-2
-              = points_select_tag(input, indent)
-          - elsif (input.name != I18n.t('client.form.fraktnr_low_case')) && (input.name != I18n.t('client.form.points_for_form'))
-            .col-sm-1
-              = sipmle_input_value_tag(f, input, indent)
-          - if input_value_exist?(f, input)
-            - @new_row = false
-            = input_value_hidden_id_tag(f, input, indent)
-          = input_id_hidden_tag(input, indent)
-        - komment_ident = client_identificator
-        = komment_field_tag(f, client, komment_ident)
-        = date_hidden_tag(komment_ident)
-        - if @new_row
-          .col-sm-1.form-box__delete_right
-            = remove_new_row
-        - else
+        - if client.fraktnr
+          .col-sm-1
+            = fraktnr_text_tag(f, client.inputs.fraktnr, client_identificator)
+        -if client.points
+          .col-sm-2
+            = points_select_tag(f, client, client_identificator)
+        - client.inputs.without_default.each do |input|
+          .col-sm-1
+            = sipmle_input_value_tag(f, input, client_identificator)
+        = komment_field_tag(f, client, client_identificator)
+        - if any_client_input_values_persist?(client)
           .col-sm-1.form-box__delete_right
             = destroy
-      - @new_row = true
+        - else
+          .col-sm-1.form-box__delete_right
+            = remove_new_row
       - (used_clients << client.id)
     - if ::Client.where.not(id: used_clients).present?
       .row.driver-box__bgtruck_withoutborder

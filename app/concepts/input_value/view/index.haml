@@ -13,9 +13,7 @@
         - prev_client = nil
         = ff.fields_for :input_values do |fff|
           = date_hidden_tag(fff)
-          -if(prev_client == nil)
-            ! <div class="row driver-box__bgtruck_withoutborder">
-          - if (prev_client != nil) && (prev_client != current_client(fff).id)
+          - if (prev_client != current_client(fff).id)
             ! <div class="row driver-box__bgtruck_withoutborder">
           -if used_clients.include?(current_client(fff).id)
             - if its_point_input?(fff)

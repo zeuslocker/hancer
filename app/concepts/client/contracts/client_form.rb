@@ -15,7 +15,6 @@ class Client
           self.inputs.append(Input.new(input_params))
         end
       end
-
       def populate_inputs(fragment:, **)
         item = inputs.find { |input| input.id == fragment[:id] && !input.id.nil? }
         return destroy_input(item) if destroy?(fragment, item)

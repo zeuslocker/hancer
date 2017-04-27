@@ -1,3 +1,4 @@
+//require operation_form
 var OperationClient = {
     selectWithFileds: function(event) {
         var $target = event.target;
@@ -51,5 +52,18 @@ var OperationClient = {
         client_ids: client_ids
       };
       return result;
+    },
+    toggleCheckBox: function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      OperationForm.activateSaveButton();
+      var checkbox = $(event.target.closest('.checkbox-circle')).find(':checkbox')[0];
+      $(checkbox).attr('checked', !$(checkbox).attr('checked'));
+      checkbox.value = !checkbox.value;
+      if(checkbox.value ==  'false'){
+        checkbox.value = true;
+      }else{
+        checkbox.value = false;
+      }
     }
 }

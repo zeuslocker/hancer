@@ -27,20 +27,36 @@ class InputValue
         @truck ||= ::Truck.find(params[:truck_id])
       end
 
+      def truck_input_values
+        @input_values ||= truck.input_values
+      end
+
       def input_value_exist?(f, input)
-        f.object.input_values.find_by(input_id: input.id, date: date.midnight..date.end_of_day)
+        truck_input_values.find_by(input_id: input.id, date: date.midnight..date.end_of_day)
       end
       # HTML Helpers
 
       def komment_field_tag(f, client, indent)
-        input = client.inputs.find_by(name: 'kommentar')
         col_size = 9 - client.inputs.length
         col_size +=1 unless client.fraktnr
         client.points ? col_size -=1 : col_size +=1
         content_tag :div, class: "col-sm-#{col_size}" do
-          text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value_exist?(f, input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)+
-          input_id_hidden_tag(input, indent)
+          komment_field_tag_inner_html(f, client, indent)
         end
+      end
+
+      def komment_field_tag_inner_html(f, client, indent)
+        div_res = ''
+        input = client.inputs.find_by(name: 'kommentar')
+        div_res << text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value_exist?(f, input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+        div_res << input_id_hidden_tag(input, indent)
+        div_res << date_hidden_tag(indent)
+        div_res << input_value_hidden_id_tag(f, input, indent) if input_value_exist?(f, input)
+        div_res.html_safe
+      end
+
+      def any_client_input_values_persist?(client)
+        truck_input_values.joins(:input).where(inputs: {client_id: client.id}).present?
       end
 
       def remove_new_row
@@ -67,15 +83,43 @@ class InputValue
       end
 
       def fraktnr_text_tag(f, input, indent)
-        text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value_exist?(f, input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+        res = ''
+        input_value = input_value_exist?(f, input)
+        res << date_hidden_tag(indent)
+        res << input_id_hidden_tag(input, indent)
+        if input_value
+          res << input_value_hidden_id_tag(f, input, indent)
+          res << text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+        else
+          res << text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", nil, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+        end
+        res
       end
 
-      def points_select_tag(input, indent)
-        select_tag("#{form_object}[input_values_attributes][#{indent}][value]", options_from_collection_for_select(::Point.all, :id, :name), class: 'driver-box__input driver-box__text driver-box__select_mini', placeholder: input.name.to_s, include_blank: I18n.t('client.form.points_blank'))
+      def points_select_tag(f, client, indent)
+        res = ''
+        input = client.inputs.points
+        input_value = input_value_exist?(f, input)
+        res << date_hidden_tag(indent)
+        res << input_id_hidden_tag(input, indent)
+        if input_value
+          res << input_value_hidden_id_tag(f, input, indent)
+          res << select_tag("#{form_object}[input_values_attributes][#{indent}][value]", options_from_collection_for_select(::Point.all, :id, :name, input_value.value), class: 'driver-box__input driver-box__text driver-box__select_mini', placeholder: input.name.to_s)
+        else
+          res << select_tag("#{form_object}[input_values_attributes][#{indent}][value]", options_from_collection_for_select(::Point.all, :id, :name), class: 'driver-box__input driver-box__text driver-box__select_mini', placeholder: input.name.to_s, include_blank: I18n.t('client.form.points_blank'))
+        end
+        res
       end
 
       def sipmle_input_value_tag(f, input, indent)
-        text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value_exist?(f, input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+        res = ''
+        res << date_hidden_tag(indent)
+        res << input_id_hidden_tag(input, indent)
+        res << text_field_tag("#{form_object}[input_values_attributes][#{indent}][value]", input_value_exist?(f, input)&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+        if input_value_exist?(f, input)
+          res << input_value_hidden_id_tag(f, input, indent)
+        end
+        res
       end
 
       def date_hidden_tag(indent)
