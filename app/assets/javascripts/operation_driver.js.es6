@@ -30,12 +30,6 @@ var OperationDriver = {
     element.closest('.driver-box__bgtruck').remove(); // eslint-disable-line  no-undef
     parseAlerts(result);
   },
-  activateSaveButton: function(event){
-    $('#js-submit-form').removeClass('disabled');
-  },
-  submitForm: function(event){
-    $('#js-main-driver-form').trigger("submit");
-  },
   addInput: function(event){
     var new_driver_html = $.ajax({
         type: 'GET',

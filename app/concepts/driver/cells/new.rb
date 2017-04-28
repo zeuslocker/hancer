@@ -3,10 +3,7 @@ class Driver
     class New < Trailblazer::Cell
       include ::SimpleForm::ActionViewExtensions::FormHelper
       include ActionView::Helpers::FormHelper
-
-      def new_key
-        @new_key ||= SecureRandom.hex(10)
-      end
+      include TrailblazerHelpers::Cells::UniqKey
     end
   end
 end
