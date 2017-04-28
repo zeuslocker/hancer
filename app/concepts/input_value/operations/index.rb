@@ -10,7 +10,7 @@ class InputValue
     step ::Trailblazer::Operation::Contract::Build()
 
     def setup_date(options, params:, **)
-      options['model_date'] = params.fetch(:date, Time.current).to_time
+      options['model_date'] = params.fetch(:date, Time.current).to_date
     end
 
     def setup_model(options, **)

@@ -4,7 +4,7 @@ class Bill
     step :setup_models
 
     def setup_date(options, params:, **)
-      options['date'] = params.fetch(:date, Time.current).to_time
+      options['date'] = params.fetch(:date, Time.current).to_date
     end
 
     def setup_models(options, date:, **)

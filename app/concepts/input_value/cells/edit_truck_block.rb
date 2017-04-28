@@ -28,11 +28,11 @@ class InputValue
       end
 
       def truck_input_values
-        @input_values ||= truck.input_values
+        @input_values ||= truck.input_values.where(date: date.midnight..date.end_of_day)
       end
 
       def input_value_exist?(f, input)
-        truck_input_values.find_by(input_id: input.id, date: date.midnight..date.end_of_day)
+        truck_input_values.find_by(input_id: input.id)
       end
       # HTML Helpers
 
@@ -40,6 +40,7 @@ class InputValue
         col_size = 9 - client.inputs.length
         col_size +=1 unless client.fraktnr
         client.points ? col_size -=1 : col_size +=1
+        col_size = 1 if col_size < 1
         content_tag :div, class: "col-sm-#{col_size}" do
           komment_field_tag_inner_html(f, client, indent)
         end

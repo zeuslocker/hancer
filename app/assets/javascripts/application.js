@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require sweet-alert
 //= require alerts
+//= require toastr
 //= require sweet-alert-confirm
 //= require i18n.js
 //= require i18n/translations

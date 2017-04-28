@@ -1,5 +1,6 @@
 class InputValue < ApplicationRecord
   belongs_to :input
-  has_many :input_value_trucks, dependent: :destroy
-  has_many :trucks, through: :input_value_trucks
+  has_one :client, through: :input
+  has_one :input_value_truck, dependent: :destroy
+  has_one :truck, through: :input_value_truck
 end

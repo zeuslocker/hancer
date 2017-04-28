@@ -7,7 +7,7 @@ module TrailblazerHelpers
       end
 
       def date
-        @date ||= (params[:date]&.to_time || Time.current)
+        @date ||= (params[:date] || Time.current).to_date
       end
 
       def its_franktnr_input?(f)
@@ -21,7 +21,7 @@ module TrailblazerHelpers
       def client_identificator
         ::SecureRandom.hex(10)
       end
-      
+
       def its_simple_input?(f)
         (current_input(f).name != I18n.t('client.form.points_for_form') &&
         current_input(f).name != I18n.t('client.form.fraktnr_low_case'))

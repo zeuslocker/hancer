@@ -5,12 +5,10 @@ class Admin
         def prepopulate!(options)
           index = 0
           result = []
-          Client.joins(inputs: :input_values).where(
-            inputs: {
+          Client.joins(:input_values).where(
               input_values: { date: options[:date].midnight..options[:date].end_of_day, id:
                             input_values.map(&:model)
                                               .map(&:id) }
-            }
           ).uniq.order(:updated_at).each do |client|
             client.inputs.each do |input|
               input_value = input_values.find { |x| x.input_id == input.id && x.date >= options[:date].midnight && x.date <= options[:date].end_of_day }

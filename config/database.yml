@@ -14,9 +14,7 @@ test: &TEST
 
 staging:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] %>
-  username: <%= ENV['DATABASE_USER_NAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: hansen_development
 
 production:
   <<: *default

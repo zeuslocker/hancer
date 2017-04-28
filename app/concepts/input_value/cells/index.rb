@@ -51,10 +51,10 @@ class InputValue
       end
 
       def find_komment_value(input, truck)
-        InputValue.joins(:trucks,input: :client).find_by(date: date.midnight..date.end_of_day,
-                                                        trucks: {id: truck.id},
-                                                        inputs: {name: I18n.t('input_value.kommentar'),
-                                                                'clients' => {id: input.client.id}})
+        InputValue.joins(input: :client, input_value_truck: :truck).find_by(date: date.midnight..date.end_of_day,
+                                                                            trucks: { id: truck.id },
+                                                                            inputs: { name: I18n.t('input_value.kommentar') },
+                                                                            clients: { id: input.client.id })
       end
 
       # HTML Helpers
@@ -69,15 +69,15 @@ class InputValue
         input = client.inputs.find_by(name: 'kommentar')
         ident = client_identificator
         input_value = find_komment_value(input, truck)
-        col_size = 9 - client.inputs.length - 1
-        col_size +=1 unless client.fraktnr
-        client.points ? col_size -=1 : col_size +=1
-
+        col_size = 9 - client.inputs.length
+        col_size += 1 unless client.fraktnr
+        client.points ? col_size -= 1 : col_size += 1
+        col_size = 1 if col_size < 1
         content_tag :div, class: "col-sm-#{col_size}" do
           res = ''
-          res << text_field_tag("#{f.object_name[0,f.object_name.rindex('[')]}[#{ident}][value]", input_value&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
-          res << hidden_field_tag("#{f.object_name[0,f.object_name.rindex('[')]}[#{ident}][input_id]", input.id)
-          res << hidden_field_tag("#{f.object_name[0,f.object_name.rindex('[')]}[#{ident}][id]", input_value.id) if input_value
+          res << text_field_tag("#{f.object_name[0, f.object_name.rindex('[')]}[#{ident}][value]", input_value&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
+          res << hidden_field_tag("#{f.object_name[0, f.object_name.rindex('[')]}[#{ident}][input_id]", input.id)
+          res << hidden_field_tag("#{f.object_name[0, f.object_name.rindex('[')]}[#{ident}][id]", input_value.id) if input_value
           res.html_safe
         end.html_safe
       end
@@ -97,13 +97,13 @@ class InputValue
 
       def truck_select_tag(f)
         f.select(:id,
-                options_for_select([[f.object.number_plate, f.object.id]]),
+                 options_for_select([[f.object.number_plate, f.object.id]]),
                  {},
                  class: 'form-control form-box__select form-box__select_blue truck_id')
       end
 
       def date_hidden_tag(f)
-        f.hidden_field(:date, value: (model['model_date']).to_s)
+        f.hidden_field(:date, value: model['model_date'].to_s)
       end
 
       def client_select_tag(f)

@@ -5,14 +5,14 @@
     %tr
       %td
         %b
-          = I18n.t('bill.date')
+          = I18n.t('bill.date').capitalize
       %td
         %b
-          = I18n.t('bill.number_plate')
+          = I18n.t('bill.number_plate').capitalize
       - client_inputs.where.not(name: I18n.t('input_value.kommentar')).each do |input|
         %td
           %b
-            = input.name
+            = input.name.capitalize
       %td
         %b
           = I18n.t('input_value.kommentar')

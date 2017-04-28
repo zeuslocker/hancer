@@ -20,10 +20,10 @@
             = sipmle_input_value_tag(f, input, client_identificator)
         = komment_field_tag(f, client, client_identificator)
         - if any_client_input_values_persist?(client)
-          .col-sm-1.form-box__delete_right
+          .col-sm-1.form-box__delete_right.mt-t-27
             = destroy
         - else
-          .col-sm-1.form-box__delete_right
+          .col-sm-1.form-box__delete_right.mt-t-27
             = remove_new_row
       - (used_clients << client.id)
     - if ::Client.where.not(id: used_clients).present?
