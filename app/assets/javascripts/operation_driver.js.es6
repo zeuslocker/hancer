@@ -31,7 +31,7 @@ var OperationDriver = {
     parseAlerts(result);
   },
   activateSaveButton: function(event){
-    $('#js-submit-driver').removeClass('disabled');
+    $('#js-submit-form').removeClass('disabled');
   },
   submitForm: function(event){
     $('#js-main-driver-form').trigger("submit");

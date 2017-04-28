@@ -31,7 +31,7 @@ var OperationPoint = {
     parseAlerts(result);
   },
   activateSaveButton: function(event){
-    $('#js-submit-point').removeClass('disabled');
+    $('#js-submit-form').removeClass('disabled');
   },
   submitForm: function(event){
     $('#js-main-point-form').trigger("submit");

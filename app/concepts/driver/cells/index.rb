@@ -1,6 +1,8 @@
 class Driver
   class Cell
     class Index < Trailblazer::Cell
+      include TrailblazerHelpers::Cells::UniqKey
+
       def show_drivers
         concept('driver/cell/show', collection: model['drivers'])
       end
@@ -11,10 +13,6 @@ class Driver
 
       def navbar
         concept('driver/cell/navbar', nil)
-      end
-
-      def new_driver_key
-        @new_driver_key ||= SecureRandom.hex(10)
       end
     end
   end

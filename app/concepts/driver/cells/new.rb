@@ -4,8 +4,8 @@ class Driver
       include ::SimpleForm::ActionViewExtensions::FormHelper
       include ActionView::Helpers::FormHelper
 
-      def new_driver_key
-        @new_driver_key ||= SecureRandom.hex(10)
+      def new_key
+        @new_key ||= SecureRandom.hex(10)
       end
     end
   end

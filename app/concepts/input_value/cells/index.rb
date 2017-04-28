@@ -78,6 +78,7 @@ class InputValue
           res << text_field_tag("#{f.object_name[0, f.object_name.rindex('[')]}[#{ident}][value]", input_value&.value, class: 'driver-box__input driver-box__text driver-box__input_mini', placeholder: input.name.to_s)
           res << hidden_field_tag("#{f.object_name[0, f.object_name.rindex('[')]}[#{ident}][input_id]", input.id)
           res << hidden_field_tag("#{f.object_name[0, f.object_name.rindex('[')]}[#{ident}][id]", input_value.id) if input_value
+          res << hidden_field_tag("#{f.object_name[0, f.object_name.rindex('[')]}[#{ident}][date]", model['model_date'].to_s)
           res.html_safe
         end.html_safe
       end

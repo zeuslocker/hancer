@@ -1,6 +1,6 @@
 %tr.driver-box__bgtruck
   %td.driver-box__td
-    = fields_for("drivers[new#{new_driver_key}]", model['model']) do |ff|
+    = fields_for("drivers[new#{new_key}]", model['model']) do |ff|
       = ff.text_field :full_name, class: 'driver-box__input driver-box__text', placeholder: I18n.t('driver.form.input.placeholder'), autofocus: true
   %td
-    = link_to image_tag('delete_row.png'), '', id: 'js-clean-field'
+    = link_to image_tag('delete_row.png'), nil, id: 'js-clean-field'

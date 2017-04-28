@@ -22,6 +22,26 @@ var OperationForm = {
       }
     });
   },
+  backLink: function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    debugger;
+    if($('#js-submit-form').hasClass('disabled')){
+      window.location.replace(event.target.closest('a').href)
+    }else {
+      swal({
+        title: I18n.t('helpers.links.confirm'),
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: I18n.t('helpers.links.yes_destroy'),
+        text: "You will not be able to recover unsaved fields!",
+        closeOnConfirm: true
+      }, function () {
+        window.location.replace(event.target.closest('a').href);
+      });
+    }
+  },
   deleteNewRow: function(event){
     event.preventDefault();
     event.stopPropagation();

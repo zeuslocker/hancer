@@ -3,12 +3,10 @@ class Admin
     class AdminForm < ::Reform::Form
       collection :trucks, populator: :populate_trucks do
         def prepopulate!(options)
-          index = 0
           result = []
           Client.joins(:input_values).where(
-              input_values: { date: options[:date].midnight..options[:date].end_of_day, id:
-                            input_values.map(&:model)
-                                              .map(&:id) }
+              input_values: { date: options[:date].midnight..options[:date].end_of_day,
+                              id: input_values.map(&:model).map(&:id) }
           ).uniq.order(:updated_at).each do |client|
             client.inputs.each do |input|
               input_value = input_values.find { |x| x.input_id == input.id && x.date >= options[:date].midnight && x.date <= options[:date].end_of_day }

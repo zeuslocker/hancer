@@ -27,6 +27,10 @@ height: 40px;
   position: relative;
   top: -3px;
 }
+.back__img_without_js-alert{
+  position: relative;
+  top: -3px;
+}
 .form-box__delete_right{
   float: right;
   margin-top: 18px;

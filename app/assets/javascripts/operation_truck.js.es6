@@ -31,7 +31,7 @@ var OperationTruck = {
     parseAlerts(result);
   },
   activateSaveButton: function(event){
-    $('#js-submit-truck').removeClass('disabled');
+    $('#js-submit-form').removeClass('disabled');
   },
   submitForm: function(event){
     $('#js-main-truck-form').trigger("submit");
