@@ -1,0 +1,73 @@
+.form-box__select {
+    border: 1px solid #D0EFFF;
+    border-radius: 2px;
+    vertical-align: middle;
+    padding: 7px;
+    height: 38px;
+    display: inherit;
+    width: 222px;
+    color: #0045FA;
+    box-shadow: none;
+}
+
+.form-box__select_blue {
+    -webkit-appearance: none;
+    background-image: image-url("blue_select.png");
+    margin-top: 20px;
+    color: #FFFFFF;
+    text-indent: 10px;
+    display: inline-block;
+    margin-left: 0;
+    box-shadow: none;
+}
+
+.form-box__select_white-blue {
+    -webkit-appearance: none;
+    background-image: image-url("white_blue_select.png");
+    margin-top: 20px;
+    margin-left: 0;
+    background: #cdf0fe;
+    color: #0045FA;
+    text-indent: 10px;
+    box-shadow: none;
+}
+
+.form-box__select-wrapper {
+    width: 225px;
+}
+
+.form-box__select_white-blue-mr {
+    margin-top: 20px;
+    margin-left: 0;
+    background: #cdf0fe;
+    color: #0045FA;
+    text-indent: 10px;
+}
+
+.form-box__select_white-blue-dnormal {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: image-url("white_blue_select.png");
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+    color: #0045FA;
+    text-indent: 10px;
+    box-shadow: none;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+    border: none;
+    vertical-align: middle;
+}
+
+.client_select_pos {
+    margin-left: 10px;
+    margin-top: -1px;
+}

@@ -1,0 +1,9 @@
+.bill_block__icons {
+    float: right;
+    min-width: 125px;
+}
+
+.bill_block_client-name {
+    display: inline-block;
+    margin-left: 15px;
+}

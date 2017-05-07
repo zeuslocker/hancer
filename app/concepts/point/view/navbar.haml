@@ -1,0 +1,24 @@
+%nav.navbar.navbar-default{:role => "navigation"}
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#navbar-brand-centered", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .navbar-brand.navbar-brand-centered.brand-color
+        = I18n.t('point.brand.name')
+    / Collect the nav links, forms, and other content for toggling
+    #navbar-brand-centered.collapse.navbar-collapse
+      %ul.nav.navbar-nav.back_box
+        %li
+          = link_to image_tag('back.png'), root_path, class: 'back__img'
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          =link_to nil,  new_field_points_path, style: 'display: none', class: 'js-add-new-point'
+          = button_tag(type: 'button', class: 'btn btn-default button__add-row', id: 'js-add-input') do
+            = I18n.t('point.form.add-input')
+        %li
+          = button_tag(type: 'button', class: 'btn btn-default disabled', id: 'js-submit-form') do
+            = I18n.t('driver.form.save')

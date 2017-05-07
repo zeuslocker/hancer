@@ -1,0 +1,58 @@
+.date-picker {
+    color: #FFFFFF;
+    background: #0045FA;
+    border: none;
+    line-height: 10px !important;
+    position: relative;
+    top: -3px;
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+    font-size: 16px;
+    height: 24px;
+}
+
+.unstyled::-webkit-inner-spin-button, .unstyled::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.date-picker::-webkit-inner-spin-button, .date-picker::-webkit-outer-spin-button, .date-picker::-webkit-clear-button, .date-picker-bill::-webkit-inner-spin-button, .date-picker-bill::-webkit-outer-spin-button, .date-picker-bill::-webkit-clear-button {
+    display: none;
+    outline: 0;
+}
+
+.date-picker::-webkit-calendar-picker-indicator {
+    position: relative;
+    left: -33px;
+    color: #FFFFFF;
+    opacity: 1;
+    height: 5px;
+    width: 8px;
+}
+
+.date-picker-bill::-webkit-calendar-picker-indicator {
+    position: relative;
+    left: -70px;
+    color: #FFFFFF;
+    opacity: 1;
+    height: 5px;
+    width: 8px;
+}
+
+.date-picker-bill {
+    height: 24px;
+    color: #FFFFFF;
+    background: #0045FA;
+    border: none;
+    line-height: 10px !important;
+    position: relative;
+    top: -3px;
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.note {
+    margin-bottom: 20px;
+    background: #FFFFFF;
+}

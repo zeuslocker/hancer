@@ -1,0 +1,78 @@
+.bs__table_borderless>tbody>tr>td, .bs__table_borderless>tbody>tr>th, .bs__table_borderless>tfoot>tr>td, .bs__table_borderless>tfoot>tr>th, .bs__table_borderless>thead>tr>td, .bs__table_borderless>thead>tr>th {
+    border: none;
+    vertical-align: middle;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.navbar-default {
+    border-color: #E7E7E7;
+    height: 60px;
+    /* Rectangle: */
+    background: #0045FA;
+}
+
+.navbar-nav>li {
+    height: 60px;
+}
+
+.js-delete-driver, #js-clean-field, .js-delete-truck, .js-delete-point, .js-delete-model {
+    float: right;
+    padding: 20px;
+}
+
+.navbar-nav>li.maintitle__title-name {
+    /* Sjåfører: */
+    font-family: 'AppleSystemUIFont';
+    font-size: 16px;
+    letter-spacing: 0;
+    float: none;
+    text-align: center;
+}
+
+.navbar-default .navbar-nav>li>* {
+    line-height: 30px;
+}
+
+.navbar-default .navbar-text {
+    color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>li>.btn {
+    margin: 7px 0px 7px 7px;
+    color: #0045fa;
+}
+
+.button__add-row {
+    background: #cdf0fe;
+}
+
+.brand-color {
+    color: #FFFFFF;
+}
+
+@media screen and (min-width:768px) {
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        margin-top: 5px;
+        display: block;
+        width: 160px;
+        height: 60px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+    .navbar-default .navbar-brand {
+        color: #FFFFFF;
+    }
+    .navbar>.container .navbar-brand-centered, .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+        color: #FFFFFF;
+    }
+}

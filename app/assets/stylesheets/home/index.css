@@ -1,0 +1,151 @@
+.navbar-header {
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar-brand>img {
+    position: relative;
+    display: inline;
+    left: 7px;
+}
+
+.navbar-brand {
+    float: none;
+}
+
+@media screen and (min-width:768px) {
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        margin-top: 5px;
+        width: 160px;
+        height: 60px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+    .navbar-brand-centered_without-mgt {
+        text-align: center;
+        color: #FFFFFF;
+        margin-left: -80px;
+        font-family: '.AppleSystemUIFont';
+        font-size: 16px;
+        color: #FFFFFF;
+        letter-spacing: 0.5px;
+        line-height: 14px;
+    }
+    .navbar-default .navbar-brand {
+        color: #FFFFFF;
+    }
+    .navbar>.container .navbar-brand-centered, .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+        font-family: '.AppleSystemUIFont';
+        font-size: 16px;
+        color: #FFFFFF;
+        letter-spacing: 0.5px;
+        line-height: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .linkblock_only-for-desktop {
+        display: none;
+    }
+}
+
+.navbar-brand__logo {
+    height: 28px;
+}
+
+.linkblock {
+    background: #FFFFFF;
+    height: 245px;
+    border-top: solid 0.5px;
+    border-right: solid 0.5px;
+    border-color: #D0EFFF;
+}
+
+.linkblock:hover {
+    background-color: #fafdff;
+}
+
+.linkblock__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.img-with-text img {
+    display: block;
+    margin: 0 auto;
+}
+
+.driver-box__bgtruck {
+    /* Bg Truck: */
+    height: 80px;
+    background: #FFFFFF;
+    border-color: #D0EFFF;
+    border-style: solid;
+    border-width: 1px;
+    valign: middle;
+}
+
+.content-box__bill {
+    background: #FFFFFF;
+    border-color: #D0EFFF;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    valign: middle;
+}
+
+.driver-box__bgtruck_withoutborder {
+    /* Bg Truck: */
+    height: 58px;
+    background: #FFFFFF;
+    border-left-color: #D0EFFF;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #D0EFFF;
+    border-right-style: solid;
+    border-right-width: 1px;
+    valign: middle;
+}
+
+.form-box {
+    background: #FFFFFF;
+    border-color: #D0EFFF;
+    border-style: solid;
+    border-width: 1px;
+    valign: middle;
+}
+
+.form-box__child {
+    background: #FFFFFF;
+    border-color: #D0EFFF;
+    valign: middle;
+    height: 70px;
+}
+
+.form-box__footer {
+    height: 20px;
+}
+
+.driver-box__bgtruck_big {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.myborder {
+    display: block;
+    border: 0.5px solid #D0EFFF;
+}
+
+.linkblock__link-text {
+    margin-top: 12px;
+    color: #003FFF;
+    font-size: 16px;
+}

@@ -1,0 +1,61 @@
+.form__ckeck_box {
+    /* Oval: */
+    border: 1px solid #D0EFFF;
+}
+
+.plus-btn {
+    background: #D0EFFF;
+    border: 1px solid #D0EFFF;
+    border-radius: 2px;
+    width: 35px;
+    height: 35px;
+    outline: 0;
+}
+
+.destroy-field__image {
+    position: relative;
+    bottom: 18px;
+    right: 15px;
+}
+
+.destroy-field__image:hover {
+    position: relative;
+    bottom: 18px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.driver-box__input-wrapper {
+    display: inline-block;
+}
+
+.back__img {
+    position: relative;
+    top: -3px;
+}
+
+.back__img_without_js-alert {
+    position: relative;
+    top: -3px;
+}
+
+.form-box__delete_right {
+    float: right;
+    margin-top: 18px;
+}
+
+.bill_block {
+    margin-bottom: 5px;
+}
+
+.bill_block__text_blue {
+    padding-left: 8px;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #0045FA;
+}
+
+::-webkit-input-placeholder {
+    color: #c8c8c8;
+}

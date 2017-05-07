@@ -1,0 +1,35 @@
+= navbar
+.container.navbar_margin
+  .row
+    .col-sm-3.linkblock
+      = link_to input_values_path, class: 'center-block linkblock__link' do
+        = image_tag('Registrer-ikon.png', class: 'center-block linkblock__link-img')
+        %p.text-center.linkblock__link-text
+          = I18n.t('home.register.title')
+    .col-sm-3.linkblock
+      = link_to bills_path, class: 'center-block linkblock__link' do
+        = image_tag('Faktura-ikon.png', class: 'center-block linkblock__link-img')
+        %p.text-center.linkblock__link-text
+          = I18n.t('home.bill.title')
+    .col-sm-6.linkblock.linkblock_only-for-desktop
+  .row
+    .col-sm-3.linkblock
+      = link_to clients_path, class: 'center-block linkblock__link' do
+        = image_tag('Kunder.png', class: 'center-block linkblock__link-img')
+        %p.text-center.linkblock__link-text
+          = I18n.t('home.client.title')
+    .col-sm-3.linkblock
+      = link_to points_path, class: 'center-block linkblock__link' do
+        = image_tag('Hentested-ikon.png', class: 'center-block linkblock__link-img')
+        %p.text-center.linkblock__link-text
+          = I18n.t('home.point.title')
+    .col-sm-3.linkblock
+      = link_to trucks_path, class: 'center-block linkblock__link' do
+        = image_tag('Lastebil-ikon.png', class: 'center-block linkblock__link-img')
+        %p.text-center.linkblock__link-text
+          = I18n.t('home.truck.title')
+    .col-sm-3.linkblock
+      = link_to drivers_path, class: 'center-block linkblock__link' do
+        = image_tag('Sjaforer-ikon.png', class: 'center-block linkblock__link-img')
+        %p.text-center.linkblock__link-text
+          = I18n.t('home.driver.title')

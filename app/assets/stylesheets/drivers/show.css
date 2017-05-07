@@ -1,0 +1,35 @@
+.driver-box__input {
+    /* Rectangle 4: */
+    background: #FFFFFF;
+    border: 1px solid #D0EFFF;
+    border-radius: 2px;
+    vertical-align: middle;
+    padding: 7px;
+    width: 222px;
+}
+
+.driver-box__input_mini {
+    /* Rectangle 4: */
+    background: #FFFFFF;
+    border: 1px solid #D0EFFF;
+    border-radius: 2px;
+    vertical-align: middle;
+    padding: 7px;
+    width: 60px;
+}
+
+.driver-box__text {
+    /* %: */
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    color: #202020;
+    letter-spacing: 0;
+}
+
+.driver-box__delete {
+    /* Oval: */
+    background: #D0EFFF;
+    /* Rectangle 4: */
+    background: #0045FA;
+    text-align: center;
+}

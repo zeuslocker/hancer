@@ -1,0 +1,9 @@
+.content-box__bill.bill_block.container
+  .row.bill_block__text_blue
+    .bill_block_client-name
+      = model.full_name
+    .col-sm-2.col-xs-2.bill_block__icons.pull-right
+      = print_pdf
+      = download_pdf
+      = collapse_btn
+  = client_bill_table

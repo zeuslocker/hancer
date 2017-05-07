@@ -1,0 +1,67 @@
+= navbar
+= edit_truck_block_link
+.container.navbar_margin
+  = form_for truck_input_values_form, url: update_collection_input_values_path, method: :post, html: {id: 'js-main-form'} do |f|
+    = date_hidden_tag(f)
+    = f.fields_for :trucks do |ff|
+      .note
+        .row.driver-box__bgtruck
+          .col-sm-3
+            = truck_select_tag(ff)
+          .col-sm-2
+            = driver_select_tag(ff)
+        - prev_client = nil
+        = ff.fields_for :input_values do |fff|
+          = create_new_row_if_no_space(fff, ff)
+          - if (prev_client != current_client(fff).id)
+            ! <div class="row driver-box__bgtruck_withoutborder">
+          -if used_clients.include?(current_client(fff).id)
+            - if its_point_input?(fff)
+              .col-sm-2
+                = date_hidden_tag(fff)
+                = points_select_tag(fff)
+            -elsif its_franktnr_input?(fff)
+              .col-sm-1
+                = date_hidden_tag(fff)
+                = input_value_tag(fff)
+            - elsif its_simple_input?(fff)
+              .col-sm-1
+                = date_hidden_tag(fff)
+                = input_value_tag(fff)
+          -else
+            .col-sm-3
+              = client_select_tag(fff, ff)
+            - if its_point_input?(fff)
+              .col-sm-2
+                = date_hidden_tag(fff)
+                = points_select_tag(fff)
+            -elsif its_franktnr_input?(fff)
+              .col-sm-1
+                = date_hidden_tag(fff)
+                = input_value_tag(fff)
+            - elsif its_simple_input?(fff)
+              .col-sm-1
+                = date_hidden_tag(fff)
+                = input_value_tag(fff)
+          - if (next_input_value(fff, ff)&.model&.input&.client != current_input(fff).client)
+            = komment_field_tag(fff, current_client(fff), ff.object.model)
+            .col-sm-1.form-box__delete_right.mt-t-27
+              = destroy(current_client(fff).id)
+            - @index = 0
+            ! </div>
+          - used_clients << current_client(fff).id
+          - prev_client = current_client(fff).id
+          - index_increment
+        - if !(::Client.ids - used_clients).empty? || all_clients(ff).empty?
+          .row.driver-box__bgtruck_withoutborder
+            - if used_clients.present?
+              .col-sm-3
+                = select_tag('client_ids[]', options_from_collection_for_select(::Client.where.not(id: used_clients), :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-dnormal js-render-client-fields', include_blank: I18n.t('client.form.clients_blank'))
+            - else
+              .col-sm-3
+                = select_tag('client_ids[]', options_from_collection_for_select(::Client.all, :id, :full_name), class: 'form-control form-box__select form-box__select_white-blue-dnormal js-render-client-fields', include_blank: I18n.t('client.form.clients_blank'))
+          .row.form-control__border_white
+        - else
+          .row.form-control__border_white
+        - used_clients.clear
+        - prev_client = nil

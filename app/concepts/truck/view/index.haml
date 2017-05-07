@@ -1,0 +1,6 @@
+= navbar
+.container.navbar_margin
+  = form_tag update_collection_trucks_path, id: 'js-main-truck-form', multipart: true do
+    %table.table.bs__table_borderless
+      %tbody.js-truck-start-label
+        = show_trucks

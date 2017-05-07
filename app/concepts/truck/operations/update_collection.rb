@@ -1,0 +1,12 @@
+class Truck
+  class UpdateCollection < Trailblazer::Operation
+    step TrailblazerHelpers::Steps::ReverseParams
+    step :create_or_update
+
+    def create_or_update(_options, params:, **)
+      params[:trucks].each do |key, value|
+        key.start_with?('new') ? ::Truck::Create.call(value) : ::Truck::Update.call(value.merge!(id: key))
+      end
+    end
+  end
+end

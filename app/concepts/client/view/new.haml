@@ -1,0 +1,8 @@
+%tr.driver-box__bgtruck
+  %td.driver-box__td
+    = fields_for("clients[new#{new_key}]", result['model']) do |ff|
+      = render view: 'client_fields', locals: {ff: ff}
+      = button_tag(class: 'plus-btn', value: "new#{new_key}") do
+        = image_tag 'PLUS.png'
+  %td
+    = link_to image_tag('delete_row.png'), '', id: 'js-clean-field'

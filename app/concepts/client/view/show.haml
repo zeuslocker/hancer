@@ -1,0 +1,9 @@
+%tr.driver-box__bgtruck
+  %td.driver-box__td
+    = fields_for("clients[]", model) do |ff|
+      = render view: 'client_fields', locals: {ff: ff}
+      = client_inputs
+      = button_tag(class: 'plus-btn', value: "#{model.id}") do
+        = image_tag 'PLUS.png'
+  %td
+    = destroy

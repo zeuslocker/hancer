@@ -1,0 +1,15 @@
+%nav.navbar.navbar-default{:role => "navigation"}
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#navbar-brand-centered", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .navbar-brand.navbar-brand-centered.brand-color
+        = month_field_tag 'date', model, class: 'date-picker-bill', 'date-date': "", 'data-date-format' => 'MMMM YYYY' 
+    #navbar-brand-centered.collapse.navbar-collapse
+      %ul.nav.navbar-nav.back_box
+        %li
+          = link_to image_tag('back.png'), root_path, class: 'back__img_without_js-alert'
